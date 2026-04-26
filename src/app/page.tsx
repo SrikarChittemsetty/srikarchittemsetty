@@ -1,28 +1,11 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
 import { Mail } from "lucide-react";
+import { projects } from "@/data/projects";
 
-const projectItems = [
-  {
-    icon: "📝",
-    name: "VoicePress",
-    description:
-      "Flask + SQLite blogging platform with Markdown writing, public/private posts, comments, likes, bookmarks, and browser voice dictation.",
-    href: "https://github.com/SrikarChittemsetty/voicepress",
-    year: "2026",
-  },
-  {
-    icon: "🧩",
-    name: "Modular Context Abstraction",
-    description:
-      "Prototype for transforming unstructured text into modular, reusable context for LLM workflows.",
-    href: "https://github.com/SrikarChittemsetty/modular-context-abstraction",
-    year: "2026",
-  },
-];
+const featuredProjects = projects.filter((project) => project.featured);
 
 const portalLinks = [
-  { label: "Projects", href: "#" },
+  { label: "Projects", href: "/projects" },
   { label: "Shelf", href: "/shelf" },
 ];
 
@@ -30,11 +13,11 @@ function Header() {
   return (
     <header className="flex items-start justify-between gap-6">
       <h1 className="text-[30px] font-bold tracking-tight text-neutral-950 sm:text-[32px]">
-        Your Full Name
+        Srikar Chittemsetty
       </h1>
       <nav className="flex items-center gap-4 pt-1 text-neutral-900">
         <a
-          href="https://github.com/"
+          href="https://github.com/SrikarChittemsetty"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub"
@@ -43,7 +26,7 @@ function Header() {
           <FaGithub size={16} />
         </a>
         <a
-          href="https://www.linkedin.com/"
+          href="https://www.linkedin.com/in/srikar-c"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn"
@@ -52,16 +35,7 @@ function Header() {
           <FaLinkedin size={16} />
         </a>
         <a
-          href="https://x.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="X (Twitter)"
-          className="rounded-md p-1 transition-all duration-200 hover:bg-black/5 hover:text-black/70"
-        >
-          <FaXTwitter size={16} />
-        </a>
-        <a
-          href="mailto:your.email@example.com"
+          href="mailto:chittemsettys@uchicago.edu"
           aria-label="Email"
           className="rounded-md p-1 transition-all duration-200 hover:bg-black/5 hover:text-black/70"
         >
@@ -76,10 +50,10 @@ function Intro() {
   return (
     <section className="space-y-6">
       <p className="max-w-3xl text-lg leading-8 text-neutral-700">
-        I am an engineering student focused on building dependable systems across software and
-        hardware. I enjoy translating messy real-world problems into clear requirements, prototypes,
-        and measurable outcomes. My current interests include embedded systems, developer tooling,
-        and practical product engineering.
+        I&apos;m Srikar, an engineer at the University of Chicago. I build what I use and use
+        what I build—growing a personal ecosystem of tools as needs arise. I explore ideas in and
+        out of code and document my thoughts as my work evolves, along with reflections on life and
+        beyond. You&apos;ll find it all here.
       </p>
       <a
         href="#builds"
@@ -114,7 +88,7 @@ function ProjectList() {
     <section id="builds" className="space-y-4">
       <h2 className="text-xl font-semibold tracking-tight text-neutral-950">Builds</h2>
       <div className="divide-y divide-neutral-200 border-y border-neutral-200">
-        {projectItems.map((project) => (
+        {featuredProjects.map((project) => (
           <a
             key={project.name}
             href={project.href}
