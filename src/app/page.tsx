@@ -2,45 +2,22 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { Mail } from "lucide-react";
 
-const workItems = [
-  {
-    marker: "MU",
-    name: "Midwest University Robotics Lab",
-    role: "Student Research Assistant - Built test tooling for autonomous navigation benchmarks.",
-    date: "2025 - Present",
-  },
-  {
-    marker: "AE",
-    name: "AeroDesign Team",
-    role: "Systems Engineer - Coordinated firmware and mechanical integration for competition UAV.",
-    date: "2024 - 2025",
-  },
-  {
-    marker: "IT",
-    name: "Campus IT Services",
-    role: "Engineering Intern - Automated support workflows and improved internal dashboard reliability.",
-    date: "2023 - 2024",
-  },
-];
-
 const projectItems = [
   {
-    icon: "⚡",
-    name: "GridSense",
-    description: "Low-cost sensor node for tracking classroom energy usage in real time.",
+    icon: "📝",
+    name: "VoicePress",
+    description:
+      "Flask + SQLite blogging platform with Markdown writing, public/private posts, comments, likes, bookmarks, and browser voice dictation.",
+    href: "https://github.com/SrikarChittemsetty/voicepress",
     year: "2026",
   },
   {
-    icon: "🤖",
-    name: "LinePilot",
-    description: "Embedded control system for a line-following robot with adaptive PID tuning.",
-    year: "2025",
-  },
-  {
-    icon: "📊",
-    name: "LabTrack",
-    description: "Lightweight web app for managing lab equipment reservations and maintenance logs.",
-    year: "2024",
+    icon: "🧩",
+    name: "Modular Context Abstraction",
+    description:
+      "Prototype for transforming unstructured text into modular, reusable context for LLM workflows.",
+    href: "https://github.com/SrikarChittemsetty/modular-context-abstraction",
+    year: "2026",
   },
 ];
 
@@ -119,31 +96,14 @@ function WorkList() {
     <section className="space-y-4">
       <div className="flex items-center justify-between gap-4">
         <h2 className="text-xl font-semibold tracking-tight text-neutral-950">Work</h2>
-        <div className="flex items-center gap-4 text-sm text-neutral-600">
-          <a href="#" className="transition-all duration-200 hover:text-neutral-900">
-            Resume
-          </a>
-          <a href="#" className="transition-all duration-200 hover:text-neutral-900">
-            See more
-          </a>
-        </div>
+        <a href="#" className="text-sm text-neutral-600 transition-all duration-200 hover:text-neutral-900">
+          Resume
+        </a>
       </div>
-      <div className="divide-y divide-neutral-200 border-y border-neutral-200">
-        {workItems.map((item) => (
-          <article
-            key={item.name}
-            className="grid grid-cols-[auto_1fr] gap-4 px-2 py-4 transition-all duration-200 hover:bg-black/[0.02] sm:grid-cols-[auto_1fr_auto] sm:items-center"
-          >
-            <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-neutral-900 text-xs font-semibold text-white">
-              {item.marker}
-            </div>
-            <div className="min-w-0">
-              <h3 className="font-medium text-neutral-900">{item.name}</h3>
-              <p className="mt-1 text-sm leading-6 text-neutral-600">{item.role}</p>
-            </div>
-            <p className="text-sm text-neutral-500 sm:ml-6">{item.date}</p>
-          </article>
-        ))}
+      <div className="border-y border-neutral-200">
+        <div className="px-2 py-4 text-sm leading-6 text-neutral-600">
+          Internship, research, and project-based experience will appear here as I add it.
+        </div>
       </div>
     </section>
   );
@@ -155,8 +115,11 @@ function ProjectList() {
       <h2 className="text-xl font-semibold tracking-tight text-neutral-950">Builds</h2>
       <div className="divide-y divide-neutral-200 border-y border-neutral-200">
         {projectItems.map((project) => (
-          <article
+          <a
             key={project.name}
+            href={project.href}
+            target="_blank"
+            rel="noopener noreferrer"
             className="grid grid-cols-[auto_1fr] gap-4 px-2 py-4 transition-all duration-200 hover:bg-black/[0.02] sm:grid-cols-[auto_1fr_auto] sm:items-center"
           >
             <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-neutral-100 text-sm">
@@ -167,7 +130,7 @@ function ProjectList() {
               <p className="mt-1 text-sm leading-6 text-neutral-600">{project.description}</p>
             </div>
             <p className="text-sm text-neutral-500 sm:ml-6">{project.year}</p>
-          </article>
+          </a>
         ))}
       </div>
     </section>
