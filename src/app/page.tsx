@@ -23,7 +23,7 @@ const projectItems = [
 
 const portalLinks = [
   { label: "Projects", href: "#" },
-  { label: "Shelf", href: "#" },
+  { label: "Shelf", href: "/shelf" },
 ];
 
 function Header() {
