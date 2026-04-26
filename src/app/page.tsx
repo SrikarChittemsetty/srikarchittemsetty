@@ -68,12 +68,7 @@ function Intro() {
 function WorkList() {
   return (
     <section className="space-y-4">
-      <div className="flex items-center justify-between gap-4">
-        <h2 className="text-xl font-semibold tracking-tight text-neutral-950">Work</h2>
-        <a href="#" className="text-sm text-neutral-600 transition-all duration-200 hover:text-neutral-900">
-          Resume
-        </a>
-      </div>
+      <h2 className="text-xl font-semibold tracking-tight text-neutral-950">Work</h2>
       <div className="border-y border-neutral-200">
         <div className="px-2 py-4 text-sm leading-6 text-neutral-600">
           Internship, research, and project-based experience will appear here as I add it.
