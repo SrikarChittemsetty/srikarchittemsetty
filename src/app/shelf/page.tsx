@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import ThemeToggle from "@/components/theme-toggle";
 
 type ShelfEntry = {
   title: string;
@@ -53,8 +54,8 @@ const shelfItems: ShelfEntry[] = [
 function ShelfCard({ item }: { item: ShelfEntry }) {
   const [imageFailed, setImageFailed] = useState(false);
   const cardBody = (
-    <article className="space-y-3 rounded-xl p-2 transition-all duration-200 hover:bg-black/[0.02]">
-      <div className="relative aspect-[2/3] overflow-hidden rounded-lg border border-neutral-200 bg-neutral-100">
+    <article className="space-y-3 rounded-xl p-2 transition-all duration-200 hover:bg-black/[0.02] dark:hover:bg-white/[0.03]">
+      <div className="relative aspect-[2/3] overflow-hidden rounded-lg border border-neutral-200 bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-900">
         {!imageFailed ? (
           <Image
             src={item.image}
@@ -65,14 +66,14 @@ function ShelfCard({ item }: { item: ShelfEntry }) {
             onError={() => setImageFailed(true)}
           />
         ) : (
-          <div className="flex h-full items-center justify-center text-xs uppercase tracking-wide text-neutral-400">
+          <div className="flex h-full items-center justify-center text-xs uppercase tracking-wide text-neutral-400 dark:text-neutral-500">
             Cover
           </div>
         )}
       </div>
       <div className="space-y-1">
-        <h2 className="text-sm font-medium text-neutral-900">{item.title}</h2>
-        <p className="text-xs uppercase tracking-wide text-neutral-500">{item.label}</p>
+        <h2 className="text-sm font-medium text-neutral-900 dark:text-neutral-100">{item.title}</h2>
+        <p className="text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-400">{item.label}</p>
       </div>
     </article>
   );
@@ -93,18 +94,21 @@ function ShelfCard({ item }: { item: ShelfEntry }) {
 
 export default function ShelfPage() {
   return (
-    <div className="min-h-screen bg-[#fafafa] font-sans text-neutral-900">
+    <div className="min-h-screen bg-[#fafafa] font-sans text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <main className="mx-auto flex w-full max-w-[800px] flex-col gap-10 px-6 py-12 sm:py-16">
-        <header className="space-y-4 border-b border-neutral-200 pb-8">
-          <Link
-            href="/"
-            className="inline-flex text-sm text-neutral-600 transition-all duration-200 hover:text-neutral-900"
-          >
-            ← Back to Home
-          </Link>
+        <header className="space-y-4 border-b border-neutral-200 pb-8 dark:border-neutral-800">
+          <div className="flex items-center justify-between gap-4">
+            <Link
+              href="/"
+              className="inline-flex text-sm text-neutral-600 transition-all duration-200 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+            >
+              ← Back to Home
+            </Link>
+            <ThemeToggle />
+          </div>
           <div className="space-y-2">
-            <h1 className="text-3xl font-semibold tracking-tight text-neutral-950">Shelf</h1>
-            <p className="max-w-2xl text-base leading-7 text-neutral-600">
+            <h1 className="text-3xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">Shelf</h1>
+            <p className="max-w-2xl text-base leading-7 text-neutral-600 dark:text-neutral-400">
               A loose collection of favorites, references, and things I keep coming back to.
             </p>
           </div>
