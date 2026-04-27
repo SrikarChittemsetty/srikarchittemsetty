@@ -7,6 +7,7 @@ const featuredProjects = projects.filter((project) => project.featured);
 const portalLinks = [
   { label: "Projects", href: "/projects" },
   { label: "Shelf", href: "/shelf" },
+  { label: "Blog", href: "/blog" },
 ];
 
 function Header() {
@@ -110,7 +111,7 @@ function ExploreLinks() {
   return (
     <section className="space-y-4">
       <h2 className="text-sm font-medium uppercase tracking-wide text-neutral-500">Explore</h2>
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {portalLinks.map((link) => (
           <a
             key={link.label}
