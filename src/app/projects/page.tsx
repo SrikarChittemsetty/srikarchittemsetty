@@ -45,7 +45,7 @@ export default function ProjectsPage() {
           </div>
         </header>
 
-        <section className="space-y-4">
+        <section className="space-y-3">
           <input
             type="search"
             value={query}
@@ -55,7 +55,7 @@ export default function ProjectsPage() {
           />
         </section>
 
-        <section className="grid gap-5 sm:grid-cols-2">
+        <section className="grid gap-4 sm:grid-cols-2">
           {filteredProjects.map((project) => (
             <article
               key={project.name}

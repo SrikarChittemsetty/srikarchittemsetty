@@ -13,11 +13,11 @@ const portalLinks = [
 
 function Header() {
   return (
-    <header className="flex items-start justify-between gap-6">
-      <h1 className="text-[30px] font-bold tracking-tight text-neutral-950 dark:text-neutral-100 sm:text-[32px]">
+    <header className="flex items-center justify-between gap-6">
+      <h1 className="text-3xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100 sm:text-[32px]">
         Srikar Chittemsetty
       </h1>
-      <nav className="flex items-center gap-4 pt-1 text-neutral-900 dark:text-neutral-100">
+      <nav className="flex items-center gap-3 text-neutral-900 dark:text-neutral-100">
         <a
           href="https://github.com/SrikarChittemsetty"
           target="_blank"
@@ -51,8 +51,8 @@ function Header() {
 
 function Intro() {
   return (
-    <section className="space-y-6">
-      <p className="max-w-3xl text-lg leading-8 text-neutral-700 dark:text-neutral-300">
+    <section className="space-y-5">
+      <p className="max-w-3xl text-base leading-7 text-neutral-700 dark:text-neutral-300 sm:text-lg sm:leading-8">
         I&apos;m Srikar, an engineer at the University of Chicago. I build what I use and use
         what I build—growing a personal ecosystem of tools as needs arise. I explore ideas in and
         out of code and document my thoughts as my work evolves, along with reflections on life and
@@ -70,7 +70,7 @@ function Intro() {
 
 function WorkList() {
   return (
-    <section className="space-y-4">
+    <section className="space-y-3">
       <h2 className="text-xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">Work</h2>
       <div className="border-y border-neutral-200 dark:border-neutral-800">
         <div className="px-2 py-4 text-sm leading-6 text-neutral-600 dark:text-neutral-400">
@@ -83,7 +83,7 @@ function WorkList() {
 
 function ProjectList() {
   return (
-    <section id="builds" className="space-y-4">
+    <section id="builds" className="space-y-3">
       <h2 className="text-xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">Builds</h2>
       <div className="divide-y divide-neutral-200 border-y border-neutral-200 dark:divide-neutral-800 dark:border-neutral-800">
         {featuredProjects.map((project) => (
@@ -111,14 +111,14 @@ function ProjectList() {
 
 function ExploreLinks() {
   return (
-    <section className="space-y-4">
+    <section className="space-y-3">
       <h2 className="text-sm font-medium uppercase tracking-wide text-neutral-500 dark:text-neutral-400">Explore</h2>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {portalLinks.map((link) => (
           <a
             key={link.label}
             href={link.href}
-            className="group flex items-center justify-between rounded-2xl bg-neutral-100 px-6 py-7 text-neutral-900 transition-all duration-200 hover:bg-neutral-200/80 dark:bg-neutral-900 dark:text-neutral-100 dark:hover:bg-neutral-800"
+            className="group flex items-center justify-between rounded-lg bg-neutral-100 px-6 py-7 text-neutral-900 transition-all duration-200 hover:bg-neutral-200/80 dark:bg-neutral-900 dark:text-neutral-100 dark:hover:bg-neutral-800"
           >
             <span className="text-xl font-semibold tracking-tight">{link.label}</span>
             <span
@@ -137,7 +137,7 @@ function ExploreLinks() {
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#fafafa] font-sans text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
-      <main className="mx-auto flex w-full max-w-[800px] flex-col gap-14 px-6 py-12 sm:py-16">
+      <main className="mx-auto flex w-full max-w-[800px] flex-col gap-10 px-6 py-12 sm:py-16">
         <Header />
         <Intro />
         <WorkList />

@@ -64,7 +64,7 @@ export default async function BlogPage() {
           </div>
         </header>
 
-        <section>
+        <section className="space-y-3">
           {!hasPosts ? (
             <p className="border-y border-neutral-200 px-2 py-5 text-sm leading-6 text-neutral-600 dark:border-neutral-800 dark:text-neutral-400">
               Writing will appear here once VoicePress has public posts.
@@ -72,7 +72,10 @@ export default async function BlogPage() {
           ) : (
             <div className="divide-y divide-neutral-200 border-y border-neutral-200 dark:divide-neutral-800 dark:border-neutral-800">
               {posts.map((post) => (
-                <article key={post.slug} className="space-y-3 px-2 py-5">
+                <article
+                  key={post.slug}
+                  className="space-y-3 rounded-lg px-2 py-5 transition-all duration-200 hover:bg-black/[0.02] dark:hover:bg-white/[0.03]"
+                >
                   {post.cover_image_url ? (
                     <img
                       src={post.cover_image_url}
