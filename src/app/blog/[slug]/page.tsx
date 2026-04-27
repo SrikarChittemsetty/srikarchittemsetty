@@ -6,6 +6,7 @@ type VoicePressPostDetail = {
   slug: string;
   body?: string;
   excerpt?: string;
+  cover_image_url?: string;
   created_at?: string;
   tags?: string;
   category?: string;
@@ -83,9 +84,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               Writing will appear here once VoicePress has public posts.
             </p>
           ) : (
-            <article className="whitespace-pre-wrap border-y border-neutral-200 px-2 py-6 text-base leading-8 text-neutral-700">
-              {post.body || post.excerpt || "Writing will appear here once VoicePress has public posts."}
-            </article>
+            <div className="space-y-4">
+              {post.cover_image_url ? (
+                <img
+                  src={post.cover_image_url}
+                  alt={`${post.title} cover`}
+                  className="max-h-[360px] w-full rounded-lg border border-neutral-200 object-cover"
+                />
+              ) : null}
+              <article className="whitespace-pre-wrap border-y border-neutral-200 px-2 py-6 text-base leading-8 text-neutral-700">
+                {post.body || post.excerpt || "Writing will appear here once VoicePress has public posts."}
+              </article>
+            </div>
           )}
         </section>
       </main>

@@ -4,6 +4,7 @@ type VoicePressPost = {
   title: string;
   slug: string;
   excerpt?: string;
+  cover_image_url?: string;
   created_at?: string;
   tags?: string;
   category?: string;
@@ -68,6 +69,13 @@ export default async function BlogPage() {
             <div className="divide-y divide-neutral-200 border-y border-neutral-200">
               {posts.map((post) => (
                 <article key={post.slug} className="space-y-3 px-2 py-5">
+                  {post.cover_image_url ? (
+                    <img
+                      src={post.cover_image_url}
+                      alt={`${post.title} cover`}
+                      className="max-h-[360px] w-full rounded-lg border border-neutral-200 object-cover"
+                    />
+                  ) : null}
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                     <Link
                       href={`/blog/${post.slug}`}
