@@ -13,6 +13,20 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    icon: "🌐",
+    name: "Personal Ecosystem Portfolio",
+    description:
+      "A Next.js portfolio that connects project galleries, VoicePress-powered writing, a curated Shelf, dark mode, and an optional interactive House explorer into one personal platform.",
+    why:
+      "Built to turn a personal website into a living ecosystem for projects, writing, experiments, and tools instead of a static resume page.",
+    href: "https://github.com/SrikarChittemsetty/engineering-portfolio",
+    year: "2026",
+    status: "Built",
+    image: "/projects/personal-ecosystem-portfolio.svg",
+    tags: ["Next.js", "TypeScript", "Tailwind", "Vercel", "API Integration"],
+    featured: true,
+  },
+  {
     icon: "📝",
     name: "VoicePress",
     description:
