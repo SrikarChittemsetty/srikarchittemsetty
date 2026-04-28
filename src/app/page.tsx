@@ -1,5 +1,6 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { Mail } from "lucide-react";
+import { House, Mail } from "lucide-react";
+import Link from "next/link";
 import { projects } from "@/data/projects";
 import ThemeToggle from "@/components/theme-toggle";
 
@@ -43,6 +44,13 @@ function Header() {
         >
           <Mail size={16} />
         </a>
+        <Link
+          href="/house"
+          aria-label="Virtual House"
+          className="rounded-md p-1 transition-all duration-200 hover:bg-black/5 hover:text-black/70 dark:hover:bg-white/10 dark:hover:text-neutral-300"
+        >
+          <House size={16} />
+        </Link>
         <ThemeToggle />
       </nav>
     </header>
