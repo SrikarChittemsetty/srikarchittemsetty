@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personal Ecosystem Portfolio
 
-## Getting Started
+A minimalist personal platform for showcasing engineering work, writing, and ongoing experiments in one cohesive experience.
 
-First, run the development server:
+## Purpose
+
+This portfolio is designed as a living product surface:
+
+- Present selected projects with clear technical context
+- Integrate blog content from VoicePress
+- Curate media/book recommendations in Shelf
+- Offer an optional interactive House explorer
+- Maintain a polished light/dark mode experience
+
+## Feature Overview
+
+- **Projects gallery:** searchable project cards with descriptions, rationale, and links
+- **VoicePress-powered blog:** pulls public posts from the VoicePress API
+- **Shelf:** curated books/media with clean presentation
+- **Interactive House:** optional exploratory navigation layer
+- **Theme support:** light/dark mode with persisted preference
+
+## Stack
+
+- Next.js (App Router)
+- React
+- TypeScript
+- Tailwind CSS
+- Vercel (frontend hosting)
+- VoicePress API (blog backend integration)
+
+## Local Setup
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Quality checks:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+```
 
-## Learn More
+## Environment Variable
 
-To learn more about Next.js, take a look at the following resources:
+`NEXT_PUBLIC_VOICEPRESS_API_BASE_URL`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Local default behavior:** if unset, blog pages fall back to `http://127.0.0.1:5000`
+- **Production:** set to your deployed VoicePress backend URL (for example, a Render service URL)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment Notes
 
-## Deploy on Vercel
+- **Frontend:** deploy this repository on Vercel
+- **Backend/blog data:** deploy VoicePress on Render and expose the public API
+- **Integration:** set `NEXT_PUBLIC_VOICEPRESS_API_BASE_URL` in Vercel environment settings
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Recruiter / Reviewer Notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This is an evolving personal platform, not a template generator. The goal is to combine product thinking, engineering execution, and writing into one maintainable portfolio surface.
