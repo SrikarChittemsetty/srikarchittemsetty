@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import ThemeToggle from "@/components/theme-toggle";
 
@@ -25,22 +26,27 @@ function formatDate(value?: string) {
   }).format(date);
 }
 
-async function getPosts(): Promise<VoicePressPost[] | null> {
+async function getPosts(): Promise<{ posts: VoicePressPost[]; unavailable: boolean }> {
   try {
     const response = await fetch(`${VOICEPRESS_API_BASE_URL}/api/posts`, {
       cache: "no-store",
     });
-    if (!response.ok) return null;
+    if (!response.ok) {
+      return { posts: [], unavailable: true };
+    }
     const data = (await response.json()) as VoicePressPost[];
-    return Array.isArray(data) ? data : null;
+    if (!Array.isArray(data)) {
+      return { posts: [], unavailable: true };
+    }
+    return { posts: data, unavailable: false };
   } catch {
-    return null;
+    return { posts: [], unavailable: true };
   }
 }
 
 export default async function BlogPage() {
-  const posts = await getPosts();
-  const hasPosts = Array.isArray(posts) && posts.length > 0;
+  const { posts, unavailable } = await getPosts();
+  const hasPosts = posts.length > 0;
 
   return (
     <div className="min-h-screen bg-[#fafafa] font-sans text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
@@ -64,9 +70,15 @@ export default async function BlogPage() {
         </header>
 
         <section className="space-y-3">
-          {!hasPosts ? (
+          {unavailable ? (
             <p className="border-y border-neutral-200 px-2 py-5 text-sm leading-6 text-neutral-600 dark:border-neutral-800 dark:text-neutral-400">
-              Public posts will appear here once VoicePress publishing is enabled.
+              Writing is temporarily unavailable. VoicePress may be waking up or redeploying; try
+              refreshing in a moment.
+            </p>
+          ) : !hasPosts ? (
+            <p className="border-y border-neutral-200 px-2 py-5 text-sm leading-6 text-neutral-600 dark:border-neutral-800 dark:text-neutral-400">
+              No public posts yet. I&apos;m using this space for project notes, engineering
+              writeups, and longer reflections as they become ready.
             </p>
           ) : (
             <div className="divide-y divide-neutral-200 border-y border-neutral-200 dark:divide-neutral-800 dark:border-neutral-800">
@@ -76,9 +88,12 @@ export default async function BlogPage() {
                   className="space-y-3 rounded-lg px-2 py-5 transition-all duration-200 hover:bg-black/[0.02] dark:hover:bg-white/[0.03]"
                 >
                   {post.cover_image_url ? (
-                    <img
+                    <Image
                       src={post.cover_image_url}
                       alt={`${post.title} cover`}
+                      width={1200}
+                      height={720}
+                      unoptimized
                       className="max-h-[360px] w-full rounded-lg border border-neutral-200 object-cover dark:border-neutral-800"
                     />
                   ) : null}

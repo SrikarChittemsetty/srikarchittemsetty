@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ThemeToggle from "@/components/theme-toggle";
@@ -66,7 +67,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <div className="space-y-2">
               <h1 className="text-3xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">Blog</h1>
               <p className="max-w-2xl text-base leading-7 text-neutral-600 dark:text-neutral-400">
-                Writing will appear here once VoicePress has public posts.
+                This post is temporarily unavailable. VoicePress may be waking up or redeploying;
+                return to Blog and try again in a moment.
               </p>
             </div>
           ) : (
@@ -85,14 +87,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <section>
           {post === "error" ? (
             <p className="border-y border-neutral-200 px-2 py-5 text-sm leading-6 text-neutral-600 dark:border-neutral-800 dark:text-neutral-400">
-              Writing will appear here once VoicePress has public posts.
+              This post is temporarily unavailable. VoicePress may be waking up or redeploying;
+              return to Blog and try again in a moment.
             </p>
           ) : (
             <div className="space-y-4">
               {post.cover_image_url ? (
-                <img
+                <Image
                   src={post.cover_image_url}
                   alt={`${post.title} cover`}
+                  width={1200}
+                  height={720}
+                  unoptimized
                   className="max-h-[360px] w-full rounded-lg border border-neutral-200 object-cover dark:border-neutral-800"
                 />
               ) : null}
