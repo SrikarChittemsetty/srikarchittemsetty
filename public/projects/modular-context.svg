@@ -1,0 +1,38 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="80" x2="1080" y2="720" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0F172A" />
+      <stop offset="1" stop-color="#1F2937" />
+    </linearGradient>
+    <linearGradient id="panel" x1="220" y1="190" x2="980" y2="620" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#111827" />
+      <stop offset="1" stop-color="#0B1220" />
+    </linearGradient>
+    <linearGradient id="accent" x1="280" y1="250" x2="900" y2="570" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#22D3EE" />
+      <stop offset="1" stop-color="#8B5CF6" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" rx="24" fill="url(#bg)" />
+  <rect x="180" y="150" width="840" height="500" rx="26" fill="url(#panel)" stroke="#334155" stroke-width="2" />
+  <rect x="220" y="190" width="760" height="56" rx="12" fill="#0F172A" />
+  <circle cx="252" cy="218" r="7" fill="#334155" />
+  <circle cx="276" cy="218" r="7" fill="#475569" />
+  <circle cx="300" cy="218" r="7" fill="#64748B" />
+  <rect x="258" y="292" width="210" height="126" rx="14" fill="#0F172A" stroke="#334155" />
+  <rect x="495" y="292" width="210" height="126" rx="14" fill="#0F172A" stroke="#334155" />
+  <rect x="732" y="292" width="210" height="126" rx="14" fill="#0F172A" stroke="#334155" />
+  <rect x="376" y="470" width="210" height="126" rx="14" fill="#0F172A" stroke="#334155" />
+  <rect x="614" y="470" width="210" height="126" rx="14" fill="#0F172A" stroke="#334155" />
+  <path d="M468 355H495" stroke="url(#accent)" stroke-width="8" stroke-linecap="round" />
+  <path d="M705 355H732" stroke="url(#accent)" stroke-width="8" stroke-linecap="round" />
+  <path d="M586 533H614" stroke="url(#accent)" stroke-width="8" stroke-linecap="round" />
+  <path d="M364 336H430" stroke="#64748B" stroke-width="10" stroke-linecap="round" />
+  <path d="M600 336H666" stroke="#64748B" stroke-width="10" stroke-linecap="round" />
+  <path d="M838 336H904" stroke="#64748B" stroke-width="10" stroke-linecap="round" />
+  <path d="M482 514H548" stroke="#64748B" stroke-width="10" stroke-linecap="round" />
+  <path d="M720 514H786" stroke="#64748B" stroke-width="10" stroke-linecap="round" />
+  <text x="600" y="118" text-anchor="middle" fill="#E2E8F0" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="42" font-weight="600">
+    Modular Context Abstraction
+  </text>
+</svg>
