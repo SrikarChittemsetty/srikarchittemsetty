@@ -7,6 +7,7 @@ export type Project = {
   status: string;
   image: string;
   tags: string[];
+  why: string;
   featured?: boolean;
 };
 
@@ -15,7 +16,9 @@ export const projects: Project[] = [
     icon: "📝",
     name: "VoicePress",
     description:
-      "Flask + SQLite blogging platform with Markdown writing, public/private posts, comments, likes, bookmarks, and browser voice dictation.",
+      "Voice-enabled blogging platform for drafting and publishing posts with Markdown, authentication, comments, likes, bookmarks, and a public posts API.",
+    why:
+      "Built to explore how personal publishing tools can become part of a larger portfolio/blog ecosystem instead of living as isolated apps.",
     href: "https://github.com/SrikarChittemsetty/voicepress",
     year: "2026",
     status: "Built",
@@ -27,7 +30,9 @@ export const projects: Project[] = [
     icon: "🧩",
     name: "Modular Context Abstraction",
     description:
-      "Prototype for transforming unstructured text into modular, reusable context for LLM workflows.",
+      "LLM tooling prototype that transforms unstructured text into modular context blocks for cleaner prompt composition and reusable AI workflows.",
+    why:
+      "Built around a practical question: how can messy notes and source material become structured context that is easier to reuse, inspect, and evolve?",
     href: "https://github.com/SrikarChittemsetty/modular-context-abstraction",
     year: "2026",
     status: "Prototype",

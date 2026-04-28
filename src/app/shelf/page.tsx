@@ -2,14 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ThemeToggle from "@/components/theme-toggle";
 
 type ShelfEntry = {
   title: string;
   label: string;
-  image: string;
-  href?: string;
+  image?: string;
+  images?: string[];
 };
 
 const shelfItems: ShelfEntry[] = [
@@ -17,52 +17,101 @@ const shelfItems: ShelfEntry[] = [
     title: "One Piece",
     label: "Anime / Manga",
     image: "/shelf/one-piece.jpg",
-    href: "https://en.wikipedia.org/wiki/One_Piece",
   },
   {
     title: "The Stranger",
     label: "Book",
     image: "/shelf/the-stranger-vintage.jpg",
-    href: "https://en.wikipedia.org/wiki/The_Stranger_(Camus_novel)",
   },
   {
     title: "Within Reason",
     label: "YouTube / Podcast",
     image: "/shelf/within-reason-portrait.jpg",
-    href: "https://podcasts.apple.com/us/podcast/within-reason/id1458675168",
   },
   {
     title: "How I Met Your Mother",
     label: "TV",
     image: "/shelf/how-i-met-your-mother.jpg",
-    href: "https://en.wikipedia.org/wiki/How_I_Met_Your_Mother",
+  },
+  {
+    title: "Two and a Half Men",
+    label: "TV",
+    image: "/shelf/two-and-a-half-men-imdb.jpg",
+  },
+  {
+    title: "Shark Tank",
+    label: "TV",
+    image: "/shelf/shark-tank.webp",
+  },
+  {
+    title: "Gordon Ramsay",
+    label: "Cooking / TV",
+    images: [
+      "/shelf/hells-kitchen.jpg",
+      "/shelf/masterchef.jpg",
+      "/shelf/kitchen-nightmares-ramsay.jpg",
+    ],
   },
   {
     title: "BoJack Horseman",
     label: "TV",
     image: "/shelf/bojack-horseman.jpg",
-    href: "https://en.wikipedia.org/wiki/BoJack_Horseman",
   },
   {
     title: "One Punch Man",
     label: "Anime / Manga",
     image: "/shelf/one-punch-man-saitama.jpg",
-    href: "https://en.wikipedia.org/wiki/One-Punch_Man",
   },
 ];
 
 function ShelfCard({ item }: { item: ShelfEntry }) {
   const [imageFailed, setImageFailed] = useState(false);
+  const [imageIndex, setImageIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const images = item.images ?? (item.image ? [item.image] : []);
+  const activeImage = images[imageIndex] ?? images[0];
+  const hasPages = images.length > 1;
+
+  useEffect(() => {
+    if (!hasPages || isPaused) return;
+    const intervalId = window.setInterval(() => {
+      setImageFailed(false);
+      setImageIndex((currentIndex) => (currentIndex + 1) % images.length);
+    }, 3600);
+
+    return () => window.clearInterval(intervalId);
+  }, [hasPages, images.length, isPaused]);
+
+  const showNextPage = () => {
+    if (!hasPages) return;
+    setImageFailed(false);
+    setImageIndex((currentIndex) => (currentIndex + 1) % images.length);
+  };
+
   const cardBody = (
-    <article className="space-y-3 rounded-xl p-2 transition-all duration-200 hover:bg-black/[0.02] dark:hover:bg-white/[0.03]">
-      <div className="relative aspect-[2/3] overflow-hidden rounded-lg border border-neutral-200 bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-900">
-        {!imageFailed ? (
+    <article
+      className="group space-y-3 rounded-xl p-2 transition-all duration-200 hover:bg-black/[0.02] dark:hover:bg-white/[0.03]"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      <div className="relative aspect-[2/3] rounded-lg">
+        <button
+          type="button"
+          disabled={!hasPages}
+          aria-label={hasPages ? `Flip ${item.title} to the next page` : undefined}
+          onClick={showNextPage}
+          className="shelf-page-frame relative z-30 block h-full w-full overflow-hidden rounded-lg border border-neutral-200 bg-neutral-100 text-left shadow-sm transition-all duration-200 group-hover:border-neutral-300 group-hover:shadow-md disabled:cursor-default dark:border-neutral-800 dark:bg-neutral-900 dark:group-hover:border-neutral-700"
+        >
+        {!imageFailed && activeImage ? (
           <Image
-            src={item.image}
+            key={activeImage}
+            src={activeImage}
             alt={`${item.title} cover`}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            className="object-cover"
+            className={`object-cover transition-opacity duration-300 ${
+              images.length > 1 ? "shelf-page-image group-hover:brightness-[1.03]" : ""
+            }`}
             onError={() => setImageFailed(true)}
           />
         ) : (
@@ -70,6 +119,24 @@ function ShelfCard({ item }: { item: ShelfEntry }) {
             Cover
           </div>
         )}
+        {hasPages ? (
+          <div
+            aria-hidden="true"
+            className="absolute bottom-2 left-1/2 flex -translate-x-1/2 gap-1.5 rounded-full bg-white/85 px-2.5 py-1.5 opacity-80 shadow-sm backdrop-blur-sm transition-all duration-200 group-hover:opacity-100 group-hover:shadow-md dark:bg-neutral-950/75"
+          >
+            {images.map((image, index) => (
+              <span
+                key={image}
+                className={`h-1.5 rounded-full transition-all duration-200 ${
+                  index === imageIndex
+                    ? "w-4 bg-neutral-900 dark:bg-neutral-100"
+                    : "w-1.5 bg-neutral-300 dark:bg-neutral-600"
+                }`}
+              />
+            ))}
+          </div>
+        ) : null}
+        </button>
       </div>
       <div className="space-y-1">
         <h2 className="text-sm font-medium text-neutral-900 dark:text-neutral-100">{item.title}</h2>
@@ -77,19 +144,7 @@ function ShelfCard({ item }: { item: ShelfEntry }) {
       </div>
     </article>
   );
-
-  if (!item.href) return cardBody;
-
-  const isExternal = item.href.startsWith("http");
-  return isExternal ? (
-    <a href={item.href} target="_blank" rel="noopener noreferrer" className="block">
-      {cardBody}
-    </a>
-  ) : (
-    <Link href={item.href} className="block">
-      {cardBody}
-    </Link>
-  );
+  return cardBody;
 }
 
 export default function ShelfPage() {

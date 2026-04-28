@@ -40,7 +40,8 @@ export default function ProjectsPage() {
           <div className="space-y-2">
             <h1 className="text-3xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">Projects</h1>
             <p className="max-w-2xl text-base leading-7 text-neutral-600 dark:text-neutral-400">
-              Tools and experiments I&apos;ve built for my own workflows, ideas, and curiosities.
+              Product-focused engineering projects with clear problems, practical implementations,
+              and measurable outcomes.
             </p>
           </div>
         </header>
@@ -50,7 +51,7 @@ export default function ProjectsPage() {
             type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search projects by name, description, status, or tags..."
+            placeholder="Search by project name, problem, technology, status, or tags..."
             className="w-full rounded-lg border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 outline-none transition-all duration-200 placeholder:text-neutral-400 focus:border-neutral-400 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder:text-neutral-500 dark:focus:border-neutral-600"
           />
         </section>
@@ -80,6 +81,10 @@ export default function ProjectsPage() {
                     <span className="text-sm text-neutral-500 dark:text-neutral-400">{project.year}</span>
                   </div>
                   <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-400">{project.description}</p>
+                  <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-400">
+                    <span className="font-medium text-neutral-800 dark:text-neutral-200">Why:</span>{" "}
+                    {project.why}
+                  </p>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (

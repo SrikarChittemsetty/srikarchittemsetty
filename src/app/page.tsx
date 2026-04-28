@@ -61,10 +61,10 @@ function Intro() {
   return (
     <section className="space-y-5">
       <p className="max-w-3xl text-base leading-7 text-neutral-700 dark:text-neutral-300 sm:text-lg sm:leading-8">
-        I&apos;m Srikar, an engineer at the University of Chicago. I build what I use and use
-        what I build—growing a personal ecosystem of tools as needs arise. I explore ideas in and
-        out of code and document my thoughts as my work evolves, along with reflections on life and
-        beyond. You&apos;ll find it all here.
+        I&apos;m Srikar Chittemsetty, an engineer at the University of Chicago. I build practical
+        software products from first principles, with a focus on useful interfaces, reliable
+        systems, and fast iteration. This portfolio highlights my projects, writing, and ongoing
+        experiments.
       </p>
       <a
         href="#builds"
@@ -72,19 +72,6 @@ function Intro() {
       >
         View Projects
       </a>
-    </section>
-  );
-}
-
-function WorkList() {
-  return (
-    <section className="space-y-3">
-      <h2 className="text-xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">Work</h2>
-      <div className="border-y border-neutral-200 dark:border-neutral-800">
-        <div className="px-2 py-4 text-sm leading-6 text-neutral-600 dark:text-neutral-400">
-          Internship, research, and project-based experience will appear here as I add it.
-        </div>
-      </div>
     </section>
   );
 }
@@ -121,6 +108,9 @@ function ExploreLinks() {
   return (
     <section className="space-y-3">
       <h2 className="text-sm font-medium uppercase tracking-wide text-neutral-500 dark:text-neutral-400">Explore</h2>
+      <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-400">
+        Browse projects and writing, or explore the optional interactive house view.
+      </p>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {portalLinks.map((link) => (
           <a
@@ -148,7 +138,6 @@ export default function Home() {
       <main className="mx-auto flex w-full max-w-[800px] flex-col gap-10 px-6 py-12 sm:py-16">
         <Header />
         <Intro />
-        <WorkList />
         <ProjectList />
         <ExploreLinks />
       </main>

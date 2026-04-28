@@ -22,7 +22,7 @@ const spotConfigs: SpotConfig[] = [
   { id: "shelf", name: "Shelf", href: "/shelf", icon: Library, livesThere: "Books, references, and notes collected over time.", action: "Browse shelf collection", zone: "left-[13%] top-[39%] h-[24%] w-[17%]" },
   { id: "workshop", name: "Kitchen", href: "/projects", icon: Hammer, livesThere: "A practical prep space mapped to active builds and shipped projects.", action: "Explore kitchen projects", zone: "left-[39%] top-[39%] h-[24%] w-[22%]" },
   { id: "study", name: "Study", href: "/blog", icon: PenSquare, livesThere: "Quiet writing space for essays, reflections, and drafts.", action: "Open the study journal", zone: "left-[68%] top-[39%] h-[24%] w-[18%]" },
-  { id: "garage", name: "Garage", icon: Wrench, livesThere: "Tool wall and prototypes reserved for private build notes.", action: "Curated reveal coming soon", zone: "left-[11%] top-[67%] h-[17%] w-[22%]" },
+  { id: "garage", name: "Garage", icon: Wrench, livesThere: "Tool wall and prototypes reserved for private build notes.", action: "Curated preview coming soon", zone: "left-[11%] top-[67%] h-[17%] w-[22%]" },
   { id: "attic", name: "Attic", icon: Warehouse, livesThere: "Storage loft for archived experiments and future ideas.", action: "Curated private archive, available selectively", zone: "left-[38%] top-[18%] h-[13%] w-[24%]" },
   { id: "basement", name: "Basement", icon: Warehouse, livesThere: "Infrastructure corner for utilities and backend systems.", action: "Infrastructure notes coming soon", zone: "left-[58%] top-[78%] h-[13%] w-[31%]" },
 ];
@@ -158,7 +158,7 @@ export default function HouseScene() {
       </div>
 
       <aside className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm dark:border-neutral-800 dark:bg-neutral-900/50">
-        <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">House Directory</p>
+        <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">House Guide</p>
         <h2 className="mt-3 text-xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">{selectedRoom.name}</h2>
 
         <p className="mt-4 text-xs font-medium uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">What lives here</p>

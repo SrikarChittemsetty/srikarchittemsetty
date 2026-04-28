@@ -23,3 +23,29 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.shelf-page-frame {
+  perspective: 900px;
+}
+
+.shelf-page-image {
+  animation: shelf-page-turn 520ms ease both;
+  transform-origin: left center;
+}
+
+@keyframes shelf-page-turn {
+  0% {
+    opacity: 0.35;
+    transform: rotateY(-34deg) translateX(-8px) scale(0.985);
+  }
+
+  55% {
+    opacity: 0.9;
+    transform: rotateY(4deg) translateX(1px) scale(1.002);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotateY(0deg) translateX(0) scale(1);
+  }
+}
