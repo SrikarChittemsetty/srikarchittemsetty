@@ -71,7 +71,7 @@ function Intro() {
         href="#builds"
         className="inline-flex rounded-md bg-neutral-900 px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:bg-neutral-700 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-300"
       >
-        Open Garage
+        View Builds
       </a>
     </section>
   );
@@ -110,8 +110,8 @@ function ExploreLinks() {
     <section className="space-y-3">
       <h2 className="text-sm font-medium uppercase tracking-wide text-neutral-500 dark:text-neutral-400">Explore</h2>
       <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-400">
-        Use the house metaphor to move through the site: Garage for builds, Study for writing,
-        Shelf for references, and House for the interactive map.
+        Use the house metaphor to move through the site: Garage for tools and systems, Study for
+        writing, Shelf for media, and House for the interactive map.
       </p>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {portalLinks.map((link) => (
