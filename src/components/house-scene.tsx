@@ -66,8 +66,9 @@ const spotConfigs: SpotConfig[] = [
     id: "attic",
     name: "Attic",
     icon: Archive,
-    livesThere: "Shelved ideas and old prototypes: quiet storage until a concept is worth dusting off.",
-    action: "Attic drops will surface curated snapshots of older work.",
+    livesThere:
+      "Shelved ideas and early prototypes, including Modular Context Abstraction: useful thoughts that are not main showcase builds yet.",
+    action: "Attic notes will surface once an idea is worth pulling back into the house.",
     zone: "left-[38%] top-[18%] h-[13%] w-[24%]",
   },
   {
@@ -87,7 +88,7 @@ function comingSoonDetail(id: SpotId): string {
     case "kitchen":
       return "Experiments stay in the kitchen until they are ready to move upstairs. A public view of this room is planned.";
     case "attic":
-      return "The attic holds shelved ideas and retired prototypes. When documented, they will appear here in small, intentional releases.";
+      return "The attic holds shelved ideas and early prototypes like Modular Context Abstraction. They stay here until they mature into tools, writeups, or finished builds.";
     case "basement":
       return "Basement work covers infrastructure and backend depth. Notes and diagrams will anchor here as they are written.";
     default:

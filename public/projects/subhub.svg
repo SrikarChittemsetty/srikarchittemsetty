@@ -1,0 +1,32 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#F7F7F4"/>
+  <rect x="110" y="90" width="980" height="620" rx="28" fill="#FFFFFF" stroke="#E3E1DC" stroke-width="3"/>
+  <rect x="150" y="136" width="260" height="110" rx="18" fill="#111111"/>
+  <rect x="450" y="136" width="260" height="110" rx="18" fill="#EDEBE6"/>
+  <rect x="750" y="136" width="260" height="110" rx="18" fill="#EDEBE6"/>
+  <text x="182" y="190" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Monthly Spend</text>
+  <text x="182" y="224" fill="#D7D3CB" font-family="Inter, Arial, sans-serif" font-size="22">$184.42</text>
+  <text x="482" y="190" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Upcoming</text>
+  <text x="482" y="224" fill="#68645D" font-family="Inter, Arial, sans-serif" font-size="22">5 renewals</text>
+  <text x="782" y="190" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Detected</text>
+  <text x="782" y="224" fill="#68645D" font-family="Inter, Arial, sans-serif" font-size="22">3 candidates</text>
+  <rect x="150" y="300" width="900" height="72" rx="16" fill="#FAFAF8" stroke="#E3E1DC" stroke-width="2"/>
+  <circle cx="190" cy="336" r="18" fill="#111111"/>
+  <rect x="232" y="320" width="180" height="14" rx="7" fill="#2A2927"/>
+  <rect x="232" y="346" width="115" height="10" rx="5" fill="#8B867C"/>
+  <rect x="835" y="322" width="150" height="28" rx="14" fill="#EDEBE6"/>
+  <rect x="150" y="396" width="900" height="72" rx="16" fill="#FAFAF8" stroke="#E3E1DC" stroke-width="2"/>
+  <circle cx="190" cy="432" r="18" fill="#111111"/>
+  <rect x="232" y="416" width="150" height="14" rx="7" fill="#2A2927"/>
+  <rect x="232" y="442" width="135" height="10" rx="5" fill="#8B867C"/>
+  <rect x="835" y="418" width="150" height="28" rx="14" fill="#EDEBE6"/>
+  <rect x="150" y="492" width="900" height="72" rx="16" fill="#FAFAF8" stroke="#E3E1DC" stroke-width="2"/>
+  <circle cx="190" cy="528" r="18" fill="#111111"/>
+  <rect x="232" y="512" width="205" height="14" rx="7" fill="#2A2927"/>
+  <rect x="232" y="538" width="95" height="10" rx="5" fill="#8B867C"/>
+  <rect x="835" y="514" width="150" height="28" rx="14" fill="#EDEBE6"/>
+  <path d="M820 615H990" stroke="#111111" stroke-width="10" stroke-linecap="round"/>
+  <path d="M820 615C850 565 888 548 928 573C952 588 960 610 990 615" stroke="#111111" stroke-width="10" stroke-linecap="round"/>
+  <text x="150" y="645" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="800">SubHub</text>
+  <text x="150" y="681" fill="#68645D" font-family="Inter, Arial, sans-serif" font-size="24">Subscription tracking, discovery, and review</text>
+</svg>

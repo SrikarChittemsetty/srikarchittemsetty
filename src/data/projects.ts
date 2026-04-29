@@ -27,6 +27,20 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    icon: "💳",
+    name: "SubHub",
+    description:
+      "Full-stack subscription tracker for monitoring recurring spend, upcoming renewals, and reviewable subscription candidates detected from Gmail metadata.",
+    why:
+      "Built to solve a real personal-finance workflow while practicing authenticated data ownership, privacy-conscious integrations, and a product-quality dashboard.",
+    href: "https://github.com/SrikarChittemsetty/subhub",
+    year: "2026",
+    status: "MVP",
+    image: "/projects/subhub.svg",
+    tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Auth"],
+    featured: true,
+  },
+  {
     icon: "📝",
     name: "VoicePress",
     description:
@@ -39,19 +53,5 @@ export const projects: Project[] = [
     image: "/projects/voicepress.svg",
     tags: ["Flask", "SQLite", "Markdown", "Auth", "Testing"],
     featured: true,
-  },
-  {
-    icon: "🧩",
-    name: "Modular Context Abstraction",
-    description:
-      "Python prototype that converts unstructured notes into reusable context blocks for cleaner prompt composition and more inspectable AI workflows.",
-    why:
-      "Built around a practical question: how can messy notes and source material become structured context that is easier to reuse, inspect, and evolve over time?",
-    href: "https://github.com/SrikarChittemsetty/modular-context-abstraction",
-    year: "2026",
-    status: "Prototype",
-    image: "/projects/modular-context.svg",
-    tags: ["Python", "LLMs", "Context", "Tooling"],
-    featured: false,
   },
 ];
