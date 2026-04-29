@@ -16,9 +16,9 @@ export const projects: Project[] = [
     icon: "🌐",
     name: "Personal Ecosystem Portfolio",
     description:
-      "A Next.js portfolio that connects project galleries, VoicePress-powered writing, a curated Shelf, dark mode, and an optional interactive House explorer into one personal platform.",
+      "A Next.js portfolio platform that unifies project case studies, VoicePress-backed writing, a curated Shelf, and an optional interactive House explorer in one personal system.",
     why:
-      "Built to turn a personal website into a living ecosystem for projects, writing, experiments, and tools instead of a static resume page.",
+      "Built to turn a personal site into a living ecosystem for projects, writing, experiments, and tools instead of a static resume page.",
     href: "https://github.com/SrikarChittemsetty/engineering-portfolio",
     year: "2026",
     status: "Built",
@@ -30,9 +30,9 @@ export const projects: Project[] = [
     icon: "📝",
     name: "VoicePress",
     description:
-      "Voice-enabled blogging platform for drafting and publishing posts with Markdown, authentication, comments, likes, bookmarks, and a public posts API.",
+      "Flask blogging platform with voice-assisted drafting, Markdown publishing, authentication, comments, likes, bookmarks, and a public posts API.",
     why:
-      "Built to explore how personal publishing tools can become part of a larger portfolio/blog ecosystem instead of living as isolated apps.",
+      "Built to explore how a standalone writing tool can integrate cleanly into a broader portfolio ecosystem instead of living as an isolated app.",
     href: "https://github.com/SrikarChittemsetty/voicepress",
     year: "2026",
     status: "Built",
@@ -44,9 +44,9 @@ export const projects: Project[] = [
     icon: "🧩",
     name: "Modular Context Abstraction",
     description:
-      "LLM tooling prototype that transforms unstructured text into modular context blocks for cleaner prompt composition and reusable AI workflows.",
+      "Python prototype that converts unstructured notes into reusable context blocks for cleaner prompt composition and more inspectable AI workflows.",
     why:
-      "Built around a practical question: how can messy notes and source material become structured context that is easier to reuse, inspect, and evolve?",
+      "Built around a practical question: how can messy notes and source material become structured context that is easier to reuse, inspect, and evolve over time?",
     href: "https://github.com/SrikarChittemsetty/modular-context-abstraction",
     year: "2026",
     status: "Prototype",

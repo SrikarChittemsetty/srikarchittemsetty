@@ -109,7 +109,8 @@ function ExploreLinks() {
     <section className="space-y-3">
       <h2 className="text-sm font-medium uppercase tracking-wide text-neutral-500 dark:text-neutral-400">Explore</h2>
       <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-400">
-        Browse projects and writing, or explore the optional interactive house view.
+        Browse project case studies, writing, and curated references, or explore the optional
+        interactive house view.
       </p>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {portalLinks.map((link) => (

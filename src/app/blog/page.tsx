@@ -110,7 +110,8 @@ export default async function BlogPage() {
           <div className="space-y-2">
             <h1 className="text-3xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">Blog</h1>
             <p className="max-w-2xl text-base leading-7 text-neutral-600 dark:text-neutral-400">
-              Notes on engineering decisions, project breakdowns, and technical writing.
+              Engineering notes, project breakdowns, and technical writing, with VoicePress sync
+              plus local portfolio fallback posts.
             </p>
           </div>
         </header>
