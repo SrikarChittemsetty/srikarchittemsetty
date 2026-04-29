@@ -38,10 +38,10 @@ export default function ProjectsPage() {
             <ThemeToggle />
           </div>
           <div className="space-y-2">
-            <h1 className="text-3xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">Projects</h1>
+            <h1 className="text-3xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">Garage</h1>
             <p className="max-w-2xl text-base leading-7 text-neutral-600 dark:text-neutral-400">
-              Product-focused engineering projects with clear problems, practical implementations,
-              and measurable outcomes.
+              Projects, tools, and systems I&apos;ve built or am shaping into reusable parts of my
+              workflow.
             </p>
           </div>
         </header>
@@ -51,7 +51,7 @@ export default function ProjectsPage() {
             type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search by project name, problem, technology, status, or tags..."
+            placeholder="Search by project name, technology, status, or tags..."
             className="w-full rounded-lg border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 outline-none transition-all duration-200 placeholder:text-neutral-400 focus:border-neutral-400 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder:text-neutral-500 dark:focus:border-neutral-600"
           />
         </section>

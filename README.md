@@ -14,7 +14,7 @@ This portfolio is designed as a living product surface:
 
 ## Feature Overview
 
-- **Projects gallery:** searchable project cards with descriptions, rationale, and links
+- **Garage (projects/tools):** searchable project cards with descriptions, rationale, and links
 - **VoicePress-powered blog:** pulls public posts from the VoicePress API
 - **Shelf:** curated books/media with clean presentation
 - **Interactive House:** optional exploratory navigation layer
