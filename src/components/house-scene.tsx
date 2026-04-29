@@ -1,11 +1,11 @@
 "use client";
 
 import type { LucideIcon } from "lucide-react";
-import { ArrowRight, ChevronRight, DoorOpen, Hammer, Library, PenSquare, Warehouse, Wrench } from "lucide-react";
+import { Archive, ArrowRight, ChevronRight, DoorOpen, Flame, Library, PenSquare, Server, Wrench } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
-type SpotId = "entry" | "shelf" | "workshop" | "study" | "garage" | "attic" | "basement";
+type SpotId = "entry" | "shelf" | "kitchen" | "study" | "garage" | "attic" | "basement";
 
 type SpotConfig = {
   id: SpotId;
@@ -18,16 +18,82 @@ type SpotConfig = {
 };
 
 const spotConfigs: SpotConfig[] = [
-  { id: "entry", name: "Entry", href: "/", icon: DoorOpen, livesThere: "The main doorway back to the portfolio landing page.", action: "Return to home", zone: "left-[46%] top-[57%] h-[23%] w-[8%]" },
-  { id: "shelf", name: "Shelf", href: "/shelf", icon: Library, livesThere: "Books, references, and notes collected over time.", action: "Browse shelf collection", zone: "left-[13%] top-[39%] h-[24%] w-[17%]" },
-  { id: "workshop", name: "Kitchen", href: "/projects", icon: Hammer, livesThere: "A practical prep space mapped to active builds and shipped projects.", action: "Explore kitchen projects", zone: "left-[39%] top-[39%] h-[24%] w-[22%]" },
-  { id: "study", name: "Study", href: "/blog", icon: PenSquare, livesThere: "Quiet writing space for essays, reflections, and drafts.", action: "Open the study journal", zone: "left-[68%] top-[39%] h-[24%] w-[18%]" },
-  { id: "garage", name: "Garage", icon: Wrench, livesThere: "Tool wall and prototypes reserved for private build notes.", action: "Curated preview coming soon", zone: "left-[11%] top-[67%] h-[17%] w-[22%]" },
-  { id: "attic", name: "Attic", icon: Warehouse, livesThere: "Storage loft for archived experiments and future ideas.", action: "Curated private archive, available selectively", zone: "left-[38%] top-[18%] h-[13%] w-[24%]" },
-  { id: "basement", name: "Basement", icon: Warehouse, livesThere: "Infrastructure corner for utilities and backend systems.", action: "Infrastructure notes coming soon", zone: "left-[58%] top-[78%] h-[13%] w-[31%]" },
+  {
+    id: "entry",
+    name: "Entry",
+    href: "/",
+    icon: DoorOpen,
+    livesThere: "The front door back to home: your portfolio landing and the main hallway into everything else.",
+    action: "Step through to the home page.",
+    zone: "left-[46%] top-[57%] h-[23%] w-[8%]",
+  },
+  {
+    id: "shelf",
+    name: "Shelf",
+    href: "/shelf",
+    icon: Library,
+    livesThere: "Favorites, references, and media worth keeping within reach—like a shelf you actually use.",
+    action: "Browse the shelf collection.",
+    zone: "left-[13%] top-[39%] h-[24%] w-[17%]",
+  },
+  {
+    id: "kitchen",
+    name: "Kitchen",
+    icon: Flame,
+    livesThere: "Where experiments are on the stove: active builds, sketches, and things still cooking.",
+    action: "Kitchen tours will open when experiments are ready to share.",
+    zone: "left-[39%] top-[39%] h-[24%] w-[22%]",
+  },
+  {
+    id: "study",
+    name: "Study",
+    href: "/blog",
+    icon: PenSquare,
+    livesThere: "Writing and project notes: essays, engineering breakdowns, and longer reflections.",
+    action: "Open the study journal.",
+    zone: "left-[68%] top-[39%] h-[24%] w-[18%]",
+  },
+  {
+    id: "garage",
+    name: "Garage",
+    href: "/projects",
+    icon: Wrench,
+    livesThere: "Tools, builds, and reusable systems—the workshop wall for shipped and in-progress projects.",
+    action: "Roll up the garage door to projects.",
+    zone: "left-[11%] top-[67%] h-[17%] w-[22%]",
+  },
+  {
+    id: "attic",
+    name: "Attic",
+    icon: Archive,
+    livesThere: "Shelved ideas and old prototypes: quiet storage until a concept is worth dusting off.",
+    action: "Attic drops will surface curated snapshots of older work.",
+    zone: "left-[38%] top-[18%] h-[13%] w-[24%]",
+  },
+  {
+    id: "basement",
+    name: "Basement",
+    icon: Server,
+    livesThere: "Infrastructure, backends, and deeper systems—the wiring and foundations below the floorboards.",
+    action: "Basement notes on plumbing and architecture will land here soon.",
+    zone: "left-[58%] top-[78%] h-[13%] w-[31%]",
+  },
 ];
 
-const placeholderRooms = new Set<SpotId>(["garage", "attic", "basement"]);
+const futureRooms = new Set<SpotId>(["kitchen", "attic", "basement"]);
+
+function comingSoonDetail(id: SpotId): string {
+  switch (id) {
+    case "kitchen":
+      return "Experiments stay in the kitchen until they are ready to move upstairs. A public view of this room is planned.";
+    case "attic":
+      return "The attic holds shelved ideas and retired prototypes. When documented, they will appear here in small, intentional releases.";
+    case "basement":
+      return "Basement work covers infrastructure and backend depth. Notes and diagrams will anchor here as they are written.";
+    default:
+      return "Additional details will be shared here soon.";
+  }
+}
 
 function SpotButton({
   spot,
@@ -46,11 +112,19 @@ function SpotButton({
 
   if (spot.href) {
     return (
-      <Link href={spot.href} aria-label={spot.name} className={className} onMouseEnter={() => onSelect(spot.id)} />
+      <Link
+        href={spot.href}
+        aria-label={spot.name}
+        className={className}
+        onMouseEnter={() => onSelect(spot.id)}
+        onFocus={() => onSelect(spot.id)}
+      />
     );
   }
 
-  return <button type="button" aria-label={spot.name} className={className} onMouseEnter={() => onSelect(spot.id)} onClick={() => onSelect(spot.id)} />;
+  return (
+    <button type="button" aria-label={spot.name} className={className} onMouseEnter={() => onSelect(spot.id)} onClick={() => onSelect(spot.id)} />
+  );
 }
 
 export default function HouseScene() {
@@ -119,6 +193,7 @@ export default function HouseScene() {
                   key={room.id}
                   href={room.href}
                   onMouseEnter={() => setSelectedRoomId(room.id)}
+                  onFocus={() => setSelectedRoomId(room.id)}
                   className={`flex items-center justify-between rounded-lg border px-4 py-3 text-left text-sm transition-colors ${
                     isActive
                       ? "border-neutral-400 bg-neutral-100 dark:border-neutral-600 dark:bg-neutral-800/80"
@@ -177,11 +252,9 @@ export default function HouseScene() {
           </Link>
         ) : (
           <div className="mt-5 rounded-md border border-neutral-200 bg-neutral-50 px-3 py-2 dark:border-neutral-800 dark:bg-neutral-900">
-            <p className="text-xs uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">Coming Soon</p>
+            <p className="text-xs uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">Coming soon</p>
             <p className="mt-1 text-xs text-neutral-600 dark:text-neutral-400">
-              {placeholderRooms.has(selectedRoom.id)
-                ? "This space is intentionally private and shared in curated drops."
-                : "Additional details will be shared here soon."}
+              {futureRooms.has(selectedRoom.id) ? comingSoonDetail(selectedRoom.id) : "Additional details will be shared here soon."}
             </p>
           </div>
         )}

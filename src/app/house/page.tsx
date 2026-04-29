@@ -21,8 +21,8 @@ export default function HousePage() {
               Virtual House
             </h1>
             <p className="max-w-2xl text-sm leading-6 text-neutral-600 dark:text-neutral-400">
-              An optional interactive map of this portfolio. Each area points to projects, writing,
-              or infrastructure notes.
+              An optional interactive map of this portfolio: entry for home, study for writing, garage for projects, shelf
+              for favorites, and kitchen, attic, and basement for experiments, shelved ideas, and deeper systems work.
             </p>
           </div>
         </header>
