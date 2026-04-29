@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ThemeToggle from "@/components/theme-toggle";
+import { localFallbackPosts, type LocalBlogPost } from "@/data/blog";
 
 type VoicePressPost = {
   title: string;
@@ -44,9 +45,54 @@ async function getPosts(): Promise<{ posts: VoicePressPost[]; unavailable: boole
   }
 }
 
+type BlogListPost = VoicePressPost | LocalBlogPost;
+
+function PostList({ posts }: { posts: BlogListPost[] }) {
+  return (
+    <div className="divide-y divide-neutral-200 border-y border-neutral-200 dark:divide-neutral-800 dark:border-neutral-800">
+      {posts.map((post) => (
+        <article
+          key={post.slug}
+          className="space-y-3 rounded-lg px-2 py-5 transition-all duration-200 hover:bg-black/[0.02] dark:hover:bg-white/[0.03]"
+        >
+          {post.cover_image_url ? (
+            <Image
+              src={post.cover_image_url}
+              alt={`${post.title} cover`}
+              width={1200}
+              height={720}
+              unoptimized
+              className="max-h-[360px] w-full rounded-lg border border-neutral-200 object-cover dark:border-neutral-800"
+            />
+          ) : null}
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <Link
+              href={`/blog/${post.slug}`}
+              className="text-lg font-medium text-neutral-950 transition-all duration-200 hover:text-neutral-600 dark:text-neutral-100 dark:hover:text-neutral-400"
+            >
+              {post.title}
+            </Link>
+            {post.created_at ? (
+              <span className="text-sm text-neutral-500 dark:text-neutral-400">{formatDate(post.created_at)}</span>
+            ) : null}
+          </div>
+          {post.excerpt ? (
+            <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-400">{post.excerpt}</p>
+          ) : null}
+          {post.tags || post.category ? (
+            <p className="text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
+              {[post.category, post.tags].filter(Boolean).join(" · ")}
+            </p>
+          ) : null}
+        </article>
+      ))}
+    </div>
+  );
+}
+
 export default async function BlogPage() {
   const { posts, unavailable } = await getPosts();
-  const hasPosts = posts.length > 0;
+  const hasVoicePressPosts = posts.length > 0;
 
   return (
     <div className="min-h-screen bg-[#fafafa] font-sans text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
@@ -75,50 +121,10 @@ export default async function BlogPage() {
               Writing is temporarily unavailable. VoicePress may be waking up or redeploying; try
               refreshing in a moment.
             </p>
-          ) : !hasPosts ? (
-            <p className="border-y border-neutral-200 px-2 py-5 text-sm leading-6 text-neutral-600 dark:border-neutral-800 dark:text-neutral-400">
-              No public posts yet. I&apos;m using this space for project notes, engineering
-              writeups, and longer reflections as they become ready.
-            </p>
+          ) : hasVoicePressPosts ? (
+            <PostList posts={posts} />
           ) : (
-            <div className="divide-y divide-neutral-200 border-y border-neutral-200 dark:divide-neutral-800 dark:border-neutral-800">
-              {posts.map((post) => (
-                <article
-                  key={post.slug}
-                  className="space-y-3 rounded-lg px-2 py-5 transition-all duration-200 hover:bg-black/[0.02] dark:hover:bg-white/[0.03]"
-                >
-                  {post.cover_image_url ? (
-                    <Image
-                      src={post.cover_image_url}
-                      alt={`${post.title} cover`}
-                      width={1200}
-                      height={720}
-                      unoptimized
-                      className="max-h-[360px] w-full rounded-lg border border-neutral-200 object-cover dark:border-neutral-800"
-                    />
-                  ) : null}
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className="text-lg font-medium text-neutral-950 transition-all duration-200 hover:text-neutral-600 dark:text-neutral-100 dark:hover:text-neutral-400"
-                    >
-                      {post.title}
-                    </Link>
-                    {post.created_at ? (
-                      <span className="text-sm text-neutral-500 dark:text-neutral-400">{formatDate(post.created_at)}</span>
-                    ) : null}
-                  </div>
-                  {post.excerpt ? (
-                    <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-400">{post.excerpt}</p>
-                  ) : null}
-                  {post.tags || post.category ? (
-                    <p className="text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
-                      {[post.category, post.tags].filter(Boolean).join(" · ")}
-                    </p>
-                  ) : null}
-                </article>
-              ))}
-            </div>
+            <PostList posts={localFallbackPosts} />
           )}
         </section>
       </main>
