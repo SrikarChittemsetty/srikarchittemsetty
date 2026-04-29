@@ -30,15 +30,15 @@ export const projects: Project[] = [
     icon: "💳",
     name: "SubHub",
     description:
-      "Full-stack subscription tracker for monitoring recurring spend, upcoming renewals, and reviewable subscription candidates detected from Gmail metadata.",
+      "Full-stack subscription tracking MVP for monitoring recurring spend, upcoming renewals, and user-reviewed subscription data.",
     why:
-      "Built to solve a real personal-finance workflow while practicing authenticated data ownership, privacy-conscious integrations, and a product-quality dashboard.",
+      "Built to solve a real personal-finance workflow while practicing authenticated data ownership, database-backed CRUD, and product-quality dashboard design. Gmail discovery is experimental and still being hardened.",
     href: "https://github.com/SrikarChittemsetty/subhub",
     year: "2026",
-    status: "MVP",
+    status: "In progress",
     image: "/projects/subhub.svg",
     tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Auth"],
-    featured: true,
+    featured: false,
   },
   {
     icon: "📝",
