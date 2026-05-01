@@ -2,9 +2,11 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { House, Mail } from "lucide-react";
 import Link from "next/link";
 import { projects } from "@/data/projects";
+import { openSourceContributions } from "@/data/open-source";
 import ThemeToggle from "@/components/theme-toggle";
 
 const featuredProjects = projects.filter((project) => project.featured);
+const latestOpenSourceContribution = openSourceContributions[0];
 
 const portalLinks = [
   { label: "Garage", href: "/projects" },
@@ -134,6 +136,49 @@ function ExploreLinks() {
   );
 }
 
+function OpenSourcePreview() {
+  if (!latestOpenSourceContribution) {
+    return null;
+  }
+
+  return (
+    <section className="space-y-2">
+      <h2 className="text-sm font-medium uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
+        Open Source
+      </h2>
+      <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-400">
+        Merged public contributions connected to the Garage.
+      </p>
+      <div className="divide-y divide-neutral-200 border-y border-neutral-200 dark:divide-neutral-800 dark:border-neutral-800">
+        <div className="flex flex-col gap-2 px-2 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+          <div className="min-w-0 space-y-1">
+            <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
+              {latestOpenSourceContribution.title}
+            </p>
+            <p className="text-xs text-neutral-600 dark:text-neutral-400">
+              {latestOpenSourceContribution.repository}
+            </p>
+          </div>
+          <a
+            href={latestOpenSourceContribution.prUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-neutral-700 transition-all duration-200 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100"
+          >
+            View PR
+          </a>
+        </div>
+      </div>
+      <Link
+        href="/projects"
+        className="inline-flex text-sm text-neutral-600 transition-all duration-200 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+      >
+        View the Garage
+      </Link>
+    </section>
+  );
+}
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#fafafa] font-sans text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
@@ -141,6 +186,7 @@ export default function Home() {
         <Header />
         <Intro />
         <ProjectList />
+        <OpenSourcePreview />
         <ExploreLinks />
       </main>
     </div>

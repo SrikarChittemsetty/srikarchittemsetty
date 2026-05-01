@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useDeferredValue, useMemo, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { projects } from "@/data/projects";
+import { openSourceContributions } from "@/data/open-source";
 import ThemeToggle from "@/components/theme-toggle";
 
 export default function ProjectsPage() {
@@ -41,7 +42,8 @@ export default function ProjectsPage() {
             <h1 className="text-3xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">Garage</h1>
             <p className="max-w-2xl text-base leading-7 text-neutral-600 dark:text-neutral-400">
               Tools, systems, and finished builds I&apos;m turning into reusable parts of my workflow.
-              For now, this is also the deeper project gallery behind the homepage showcase.
+              For now, this is also the deeper project gallery and public contribution record behind the
+              homepage showcase.
             </p>
           </div>
         </header>
@@ -115,6 +117,67 @@ export default function ProjectsPage() {
             No projects match that search yet.
           </p>
         ) : null}
+
+        <section className="space-y-4 border-t border-neutral-200 pt-8 dark:border-neutral-800">
+          <div className="space-y-2">
+            <h2 className="text-xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">
+              Open Source
+            </h2>
+            <p className="max-w-2xl text-sm leading-6 text-neutral-600 dark:text-neutral-400">
+              A growing record of merged contributions to external tools, SDKs, and developer-facing
+              projects.
+            </p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {openSourceContributions.map((contribution) => (
+              <article
+                key={contribution.prUrl}
+                className="space-y-4 rounded-lg border border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900"
+              >
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
+                      {contribution.repository}
+                    </p>
+                    <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-700 dark:border-emerald-900/70 dark:bg-emerald-950/60 dark:text-emerald-300">
+                      {contribution.status}
+                    </span>
+                  </div>
+                  <h3 className="font-medium text-neutral-950 dark:text-neutral-100">
+                    {contribution.title}
+                  </h3>
+                  <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-400">
+                    {contribution.summary}
+                  </p>
+                  <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-400">
+                    <span className="font-medium text-neutral-800 dark:text-neutral-200">Impact:</span>{" "}
+                    {contribution.impact}
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {contribution.tech.map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-full bg-neutral-100 px-2.5 py-1 text-xs text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+                <a
+                  href={contribution.prUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-neutral-800 transition-all duration-200 hover:text-neutral-500 dark:text-neutral-200 dark:hover:text-neutral-400"
+                >
+                  <FaGithub size={15} />
+                  View Pull Request
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
       </main>
     </div>
   );

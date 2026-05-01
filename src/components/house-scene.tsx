@@ -1,7 +1,17 @@
 "use client";
 
 import type { LucideIcon } from "lucide-react";
-import { Archive, ArrowRight, ChevronRight, DoorOpen, Flame, Library, PenSquare, Server, Wrench } from "lucide-react";
+import {
+  Armchair,
+  ArrowRight,
+  BookOpen,
+  ChevronRight,
+  CookingPot,
+  Home,
+  LibraryBig,
+  PackageOpen,
+  Toolbox,
+} from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
@@ -12,6 +22,7 @@ type SpotConfig = {
   name: string;
   href?: string;
   icon: LucideIcon;
+  iconClassName: string;
   livesThere: string;
   action: string;
   zone: string;
@@ -20,9 +31,10 @@ type SpotConfig = {
 const spotConfigs: SpotConfig[] = [
   {
     id: "entry",
-    name: "Entry",
+    name: "Home",
     href: "/",
-    icon: DoorOpen,
+    icon: Home,
+    iconClassName: "h-5 w-5 sm:h-7 sm:w-7",
     livesThere: "The front door back to home: your portfolio landing and the main hallway into everything else.",
     action: "Step through to the home page.",
     zone: "left-[46%] top-[57%] h-[23%] w-[8%]",
@@ -31,7 +43,8 @@ const spotConfigs: SpotConfig[] = [
     id: "shelf",
     name: "Shelf",
     href: "/shelf",
-    icon: Library,
+    icon: LibraryBig,
+    iconClassName: "h-6 w-6 sm:h-8 sm:w-8",
     livesThere: "Media worth keeping within reach: shows, books, podcasts, and other things that add personality.",
     action: "Browse the shelf collection.",
     zone: "left-[13%] top-[39%] h-[24%] w-[17%]",
@@ -39,7 +52,8 @@ const spotConfigs: SpotConfig[] = [
   {
     id: "kitchen",
     name: "Kitchen",
-    icon: Flame,
+    icon: CookingPot,
+    iconClassName: "h-5 w-5 sm:h-7 sm:w-7",
     livesThere: "Where experiments are on the stove: active builds, sketches, and things still cooking.",
     action: "Kitchen tours will open when experiments are ready to share.",
     zone: "left-[39%] top-[39%] h-[24%] w-[22%]",
@@ -48,7 +62,8 @@ const spotConfigs: SpotConfig[] = [
     id: "study",
     name: "Study",
     href: "/blog",
-    icon: PenSquare,
+    icon: BookOpen,
+    iconClassName: "h-5 w-5 sm:h-7 sm:w-7",
     livesThere: "Writing and project notes: essays, engineering breakdowns, and longer reflections.",
     action: "Open the study journal.",
     zone: "left-[68%] top-[39%] h-[24%] w-[18%]",
@@ -57,24 +72,28 @@ const spotConfigs: SpotConfig[] = [
     id: "garage",
     name: "Garage",
     href: "/projects",
-    icon: Wrench,
-    livesThere: "Tools, systems, and reusable builds—the workshop wall for things I make and keep improving.",
+    icon: Toolbox,
+    iconClassName: "h-6 w-6 sm:h-9 sm:w-9",
+    livesThere:
+      "Projects, builds, and public contributions—the workshop wall for things I make and keep improving.",
     action: "Roll up the garage door to the project gallery.",
     zone: "left-[11%] top-[67%] h-[17%] w-[22%]",
   },
   {
     id: "attic",
     name: "Attic",
-    icon: Archive,
+    icon: PackageOpen,
+    iconClassName: "h-5 w-5 sm:h-7 sm:w-7",
     livesThere:
       "Shelved ideas and early prototypes, including Modular Context Abstraction: useful thoughts that are not main showcase builds yet.",
     action: "Attic notes will surface once an idea is worth pulling back into the house.",
-    zone: "left-[38%] top-[18%] h-[13%] w-[24%]",
+    zone: "left-[40%] top-[9%] h-[10%] w-[20%]",
   },
   {
     id: "basement",
     name: "Basement",
-    icon: Server,
+    icon: Armchair,
+    iconClassName: "h-5 w-5 sm:h-8 sm:w-8",
     livesThere: "Infrastructure, backends, and deeper systems—the wiring and foundations below the floorboards.",
     action: "Basement notes on plumbing and architecture will land here soon.",
     zone: "left-[58%] top-[78%] h-[13%] w-[31%]",
@@ -107,9 +126,22 @@ function SpotButton({
 }) {
   const className = `group absolute cursor-pointer rounded-md border transition-all duration-200 ${spot.zone} ${
     isActive
-      ? "border-neutral-500 bg-neutral-800/10 shadow-[0_0_0_1px_rgba(64,64,64,0.2)] dark:border-neutral-400 dark:bg-neutral-100/10"
-      : "border-transparent hover:border-neutral-400 hover:bg-neutral-800/5 dark:hover:border-neutral-500 dark:hover:bg-neutral-100/10"
+      ? "border-neutral-500 bg-neutral-800/14 shadow-[0_0_0_1px_rgba(64,64,64,0.28)] dark:border-neutral-300 dark:bg-neutral-100/15"
+      : "border-transparent hover:border-neutral-400 hover:bg-neutral-800/7 dark:hover:border-neutral-500 dark:hover:bg-neutral-100/10"
   }`;
+  const Icon = spot.icon;
+
+  const overlay = (
+    <span
+      className={`pointer-events-none absolute left-1/2 top-1/2 inline-flex -translate-x-1/2 -translate-y-1/2 items-center gap-1 rounded-md border px-1.5 py-1 text-[10px] font-medium uppercase tracking-wide transition-colors sm:text-[11px] ${
+        isActive
+          ? "border-neutral-500 bg-neutral-900/85 text-neutral-50 dark:border-neutral-300 dark:bg-neutral-100 dark:text-neutral-900"
+          : "border-neutral-300/90 bg-white/85 text-neutral-700 group-hover:border-neutral-400 group-hover:text-neutral-900 dark:border-neutral-600 dark:bg-neutral-900/85 dark:text-neutral-200 dark:group-hover:border-neutral-500 dark:group-hover:text-neutral-100"
+      }`}
+    >
+      <Icon className={`shrink-0 ${spot.iconClassName}`} />
+    </span>
+  );
 
   if (spot.href) {
     return (
@@ -119,12 +151,23 @@ function SpotButton({
         className={className}
         onMouseEnter={() => onSelect(spot.id)}
         onFocus={() => onSelect(spot.id)}
-      />
+      >
+        {overlay}
+      </Link>
     );
   }
 
   return (
-    <button type="button" aria-label={spot.name} className={className} onMouseEnter={() => onSelect(spot.id)} onClick={() => onSelect(spot.id)} />
+    <button
+      type="button"
+      aria-label={spot.name}
+      className={className}
+      onMouseEnter={() => onSelect(spot.id)}
+      onClick={() => onSelect(spot.id)}
+      onFocus={() => onSelect(spot.id)}
+    >
+      {overlay}
+    </button>
   );
 }
 
