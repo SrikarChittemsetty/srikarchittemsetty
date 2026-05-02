@@ -9,10 +9,10 @@ const featuredProjects = projects.filter((project) => project.featured);
 const latestOpenSourceContribution = openSourceContributions[0];
 
 const portalLinks = [
-  { label: "Garage", href: "/projects" },
-  { label: "Study", href: "/blog" },
+  { label: "Projects", href: "/projects" },
+  { label: "Writing", href: "/blog" },
   { label: "Shelf", href: "/shelf" },
-  { label: "House", href: "/house" },
+  { label: "Brainscape", href: "/house" },
 ];
 
 function Header() {
@@ -49,7 +49,7 @@ function Header() {
         </a>
         <Link
           href="/house"
-          aria-label="Virtual House"
+          aria-label="Brainscape"
           className="rounded-md p-1 transition-all duration-200 hover:bg-black/5 hover:text-black/70 dark:hover:bg-white/10 dark:hover:text-neutral-300"
         >
           <House size={16} />
@@ -64,17 +64,24 @@ function Intro() {
   return (
     <section className="space-y-5">
       <p className="max-w-3xl text-base leading-7 text-neutral-700 dark:text-neutral-300 sm:text-lg sm:leading-8">
-        I&apos;m Srikar Chittemsetty, an engineer at the University of Chicago. I build practical
-        software products from first principles, with a focus on useful interfaces, reliable
-        systems, and fast iteration. This portfolio highlights my projects, writing, and ongoing
-        experiments.
+        Welcome! I&apos;m Srikar, an engineer at the University of Chicago. This is a comprehensive
+        account of my work, active and past, and a window into how I think through projects,
+        systems, and ideas.
       </p>
-      <a
-        href="#builds"
-        className="inline-flex rounded-md bg-neutral-900 px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:bg-neutral-700 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-300"
-      >
-        View Builds
-      </a>
+      <div className="flex flex-wrap gap-3">
+        <a
+          href="#builds"
+          className="inline-flex rounded-md bg-neutral-900 px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:bg-neutral-700 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-300"
+        >
+          View Projects
+        </a>
+        <Link
+          href="/house"
+          className="inline-flex rounded-md border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-900 transition-all duration-200 hover:border-neutral-400 hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-100 dark:hover:border-neutral-600 dark:hover:bg-neutral-900"
+        >
+          Enter the Brainscape
+        </Link>
+      </div>
     </section>
   );
 }
@@ -82,7 +89,9 @@ function Intro() {
 function ProjectList() {
   return (
     <section id="builds" className="space-y-3">
-      <h2 className="text-xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">Featured Builds</h2>
+      <h2 className="text-xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">
+        Featured Projects
+      </h2>
       <div className="divide-y divide-neutral-200 border-y border-neutral-200 dark:divide-neutral-800 dark:border-neutral-800">
         {featuredProjects.map((project) => (
           <a
@@ -98,6 +107,9 @@ function ProjectList() {
             <div className="min-w-0">
               <h3 className="font-medium text-neutral-900 dark:text-neutral-100">{project.name}</h3>
               <p className="mt-1 text-sm leading-6 text-neutral-600 dark:text-neutral-400">{project.description}</p>
+              <p className="mt-2 text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-500">
+                {project.tags.slice(0, 4).join(" / ")}
+              </p>
             </div>
             <p className="text-sm text-neutral-500 dark:text-neutral-500 sm:ml-6">{project.year}</p>
           </a>
@@ -110,10 +122,12 @@ function ProjectList() {
 function ExploreLinks() {
   return (
     <section className="space-y-3">
-      <h2 className="text-sm font-medium uppercase tracking-wide text-neutral-500 dark:text-neutral-400">Explore</h2>
+      <h2 className="text-sm font-medium uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
+        Portfolio Paths
+      </h2>
       <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-400">
-        Use the house metaphor to move through the site: Garage for tools and systems, Study for
-        writing, Shelf for media, and House for the interactive map.
+        Start with the technical work, then branch into writing, references, or the Brainscape if
+        you want the more personal version of the portfolio.
       </p>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {portalLinks.map((link) => (
@@ -147,7 +161,7 @@ function OpenSourcePreview() {
         Open Source
       </h2>
       <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-400">
-        Merged public contributions connected to the Garage.
+        Merged public contributions to external developer tools and SDKs.
       </p>
       <div className="divide-y divide-neutral-200 border-y border-neutral-200 dark:divide-neutral-800 dark:border-neutral-800">
         <div className="flex flex-col gap-2 px-2 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
@@ -173,7 +187,7 @@ function OpenSourcePreview() {
         href="/projects"
         className="inline-flex text-sm text-neutral-600 transition-all duration-200 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
       >
-        View the Garage
+        View all projects
       </Link>
     </section>
   );

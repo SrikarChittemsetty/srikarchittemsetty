@@ -1,0 +1,21 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Next: dev (webpack)",
+      "type": "npm",
+      "script": "dev",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "detail": "Stable dev server; avoids Turbopack cache corruption."
+    },
+    {
+      "label": "Next: dev clean (wipe .next + webpack)",
+      "type": "npm",
+      "script": "dev:clean",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "detail": "Use when /shelf hangs or logs show Turbopack SST/cache errors."
+    }
+  ]
+}
