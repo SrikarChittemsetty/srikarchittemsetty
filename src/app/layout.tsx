@@ -16,11 +16,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Srikar Chittemsetty",
   description:
-    "Personal Ecosystem Portfolio by Srikar Chittemsetty, featuring software projects, VoicePress-powered writing, Shelf curation, and an interactive House explorer.",
+    "Personal Ecosystem Portfolio by Srikar Chittemsetty, featuring software projects, in-repo blog writing, Shelf curation, and Behind the Scenes.",
   openGraph: {
     title: "Srikar Chittemsetty",
     description:
-      "Personal Ecosystem Portfolio by Srikar Chittemsetty, featuring software projects, VoicePress-powered writing, Shelf curation, and an interactive House explorer.",
+      "Personal Ecosystem Portfolio by Srikar Chittemsetty, featuring software projects, in-repo blog writing, Shelf curation, and Behind the Scenes.",
     type: "website",
   },
   twitter: {

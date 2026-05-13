@@ -1,24 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import ThemeToggle from "@/components/theme-toggle";
-import { getLocalFallbackPostBySlug, type LocalBlogPost } from "@/data/blog";
-
-type VoicePressPostDetail = {
-  title: string;
-  slug: string;
-  body?: string;
-  excerpt?: string;
-  cover_image_url?: string;
-  created_at?: string;
-  tags?: string;
-  category?: string;
-};
-
-type BlogPostDetail = VoicePressPostDetail | LocalBlogPost;
-
-const VOICEPRESS_API_BASE_URL =
-  process.env.NEXT_PUBLIC_VOICEPRESS_API_BASE_URL ?? "http://127.0.0.1:5000";
+import { SubpageTitleRow } from "@/components/subpage-title-row";
+import { blogPosts, getBlogPostBySlug, type BlogPost } from "@/data/blog";
 
 function formatDate(value?: string) {
   if (!value) return null;
@@ -31,63 +14,13 @@ function formatDate(value?: string) {
   }).format(date);
 }
 
-async function getVoicePressPost(slug: string): Promise<VoicePressPostDetail | null | "error"> {
-  try {
-    const response = await fetch(`${VOICEPRESS_API_BASE_URL}/api/posts/${encodeURIComponent(slug)}`, {
-      cache: "no-store",
-    });
-    if (response.status === 404) return null;
-    if (!response.ok) return "error";
-    const data = (await response.json()) as VoicePressPostDetail;
-    if (!data || typeof data !== "object" || !data.title || !data.slug) {
-      return null;
-    }
-    return data;
-  } catch {
-    return "error";
-  }
+export function generateStaticParams() {
+  return blogPosts.map((post) => ({ slug: post.slug }));
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const voicePressPost = await getVoicePressPost(slug);
-
-  if (voicePressPost === "error") {
-    return (
-      <div className="min-h-screen bg-[#fafafa] font-sans text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
-        <main className="mx-auto flex w-full max-w-[800px] flex-col gap-10 px-6 py-12 sm:py-16">
-          <header className="space-y-4 border-b border-neutral-200 pb-8 dark:border-neutral-800">
-            <div className="flex items-center justify-between gap-4">
-              <Link
-                href="/blog"
-                className="inline-flex text-sm text-neutral-600 transition-all duration-200 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
-              >
-                ← Back to Blog
-              </Link>
-              <ThemeToggle />
-            </div>
-            <div className="space-y-2">
-              <h1 className="text-3xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">Blog</h1>
-              <p className="max-w-2xl text-base leading-7 text-neutral-600 dark:text-neutral-400">
-                This post is temporarily unavailable. VoicePress may be waking up or redeploying; return to Blog and
-                try again in a moment.
-              </p>
-            </div>
-          </header>
-
-          <section>
-            <p className="border-y border-neutral-200 px-2 py-5 text-sm leading-6 text-neutral-600 dark:border-neutral-800 dark:text-neutral-400">
-              This post is temporarily unavailable. VoicePress may be waking up or redeploying; return to Blog and try
-              again in a moment.
-            </p>
-          </section>
-        </main>
-      </div>
-    );
-  }
-
-  const post: BlogPostDetail | undefined =
-    voicePressPost !== null ? voicePressPost : getLocalFallbackPostBySlug(slug);
+  const post: BlogPost | undefined = getBlogPostBySlug(slug);
 
   if (!post) {
     notFound();
@@ -97,23 +30,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     <div className="min-h-screen bg-[#fafafa] font-sans text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <main className="mx-auto flex w-full max-w-[800px] flex-col gap-10 px-6 py-12 sm:py-16">
         <header className="space-y-4 border-b border-neutral-200 pb-8 dark:border-neutral-800">
-          <div className="flex items-center justify-between gap-4">
-            <Link
-              href="/blog"
-              className="inline-flex text-sm text-neutral-600 transition-all duration-200 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
-            >
-              ← Back to Blog
-            </Link>
-            <ThemeToggle />
-          </div>
-          <div className="space-y-3">
-            <h1 className="text-3xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">{post.title}</h1>
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-neutral-500 dark:text-neutral-400">
-              {post.created_at ? <span>{formatDate(post.created_at)}</span> : null}
-              {post.tags || post.category ? (
-                <span>{[post.category, post.tags].filter(Boolean).join(" · ")}</span>
-              ) : null}
-            </div>
+          <SubpageTitleRow backHref="/blog" backLabel="Back to blog">
+            {post.title}
+          </SubpageTitleRow>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-neutral-500 dark:text-neutral-400">
+            {post.created_at ? <span>{formatDate(post.created_at)}</span> : null}
+            {post.tags || post.category ? (
+              <span>{[post.category, post.tags].filter(Boolean).join(" · ")}</span>
+            ) : null}
           </div>
         </header>
 
@@ -130,7 +54,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               />
             ) : null}
             <article className="whitespace-pre-wrap border-y border-neutral-200 px-2 py-6 text-base leading-8 text-neutral-700 dark:border-neutral-800 dark:text-neutral-300">
-              {post.body || post.excerpt || "Writing will appear here once VoicePress has public posts."}
+              {post.body || post.excerpt || ""}
             </article>
           </div>
         </section>

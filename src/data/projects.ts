@@ -16,14 +16,14 @@ export const projects: Project[] = [
     icon: "🌐",
     name: "Personal Ecosystem Portfolio",
     description:
-      "A Next.js portfolio platform that unifies project case studies, VoicePress-backed writing, a curated Shelf, and an optional interactive House explorer in one personal system.",
+      "A Next.js portfolio platform that unifies project case studies, in-repo writing, a curated Shelf, and optional Behind the Scenes in one personal system.",
     why:
       "Built to turn a personal site into a living ecosystem for projects, writing, experiments, and tools instead of a static resume page.",
-    href: "https://github.com/SrikarChittemsetty/engineering-portfolio",
+    href: "https://github.com/SrikarChittemsetty/srikarchittemsetty",
     year: "2026",
     status: "Built",
     image: "/projects/personal-ecosystem-portfolio.svg",
-    tags: ["Next.js", "TypeScript", "Tailwind", "Vercel", "API Integration"],
+    tags: ["Next.js", "TypeScript", "Tailwind", "Vercel", "Portfolio"],
     featured: true,
   },
   {
@@ -35,10 +35,24 @@ export const projects: Project[] = [
       "Built to solve a real personal-finance workflow while practicing authenticated data ownership, database-backed CRUD, and product-quality dashboard design. Gmail discovery is experimental and still being hardened.",
     href: "https://github.com/SrikarChittemsetty/subhub",
     year: "2026",
-    status: "In progress",
+    status: "MVP",
     image: "/projects/subhub.svg",
     tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Auth"],
-    featured: false,
+    featured: true,
+  },
+  {
+    icon: "🧩",
+    name: "Modular Context Abstraction",
+    description:
+      "Streamlit prototype that extracts messy AI collaboration transcripts into reusable context modules and assembles transfer prompts under token and privacy constraints.",
+    why:
+      "Built to make long-running AI workflows easier to resume, audit, and hand off without copying entire conversations or leaking private context.",
+    href: "https://github.com/SrikarChittemsetty/modular-context-abstraction",
+    year: "2026",
+    status: "Prototype",
+    image: "/projects/modular-context.svg",
+    tags: ["Python", "Streamlit", "OpenAI API", "Context Engineering"],
+    featured: true,
   },
   {
     icon: "📝",
@@ -53,5 +67,19 @@ export const projects: Project[] = [
     image: "/projects/voicepress.svg",
     tags: ["Flask", "SQLite", "Markdown", "Auth", "Testing"],
     featured: true,
+  },
+  {
+    icon: "🧠",
+    name: "LeetCode Log",
+    description:
+      "Public practice journal with solved interview problems, final Python solutions, pitfalls, complexity notes, and reusable mental models.",
+    why:
+      "Built to make algorithm practice inspectable: not just final answers, but how mistakes, patterns, and interview triggers get turned into repeatable judgment.",
+    href: "https://github.com/SrikarChittemsetty/leetcode-log",
+    year: "2026",
+    status: "Active",
+    image: "/projects/personal-ecosystem-portfolio.svg",
+    tags: ["Python", "Algorithms", "Interview Prep", "Writing"],
+    featured: false,
   },
 ];

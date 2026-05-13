@@ -224,7 +224,7 @@ export default function HouseScene() {
           ))}
         </div>
 
-        <p className="mt-3 text-xs leading-5 text-neutral-500 dark:text-neutral-400">Click around the house to explore.</p>
+        <p className="mt-3 text-xs leading-5 text-neutral-500 dark:text-neutral-400">Click the map to explore.</p>
 
         <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:hidden">
           {spotConfigs.map((room) => {
@@ -277,7 +277,9 @@ export default function HouseScene() {
       </div>
 
       <aside className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm dark:border-neutral-800 dark:bg-neutral-900/50">
-        <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">House Guide</p>
+        <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
+          Behind the Scenes guide
+        </p>
         <h2 className="mt-3 text-xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">{selectedRoom.name}</h2>
 
         <p className="mt-4 text-xs font-medium uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">What lives here</p>

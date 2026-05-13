@@ -1,9 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import ThemeToggle from "@/components/theme-toggle";
+import { SubpageTitleRow, subpageHeaderTaglineClassName } from "@/components/subpage-title-row";
 
 type ShelfEntry = {
   title: string;
@@ -152,21 +151,10 @@ export default function ShelfPage() {
     <div className="min-h-screen bg-[#fafafa] font-sans text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <main className="mx-auto flex w-full max-w-[800px] flex-col gap-10 px-6 py-12 sm:py-16">
         <header className="space-y-4 border-b border-neutral-200 pb-8 dark:border-neutral-800">
-          <div className="flex items-center justify-between gap-4">
-            <Link
-              href="/"
-              className="inline-flex text-sm text-neutral-600 transition-all duration-200 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
-            >
-              ← Back to Home
-            </Link>
-            <ThemeToggle />
-          </div>
-          <div className="space-y-2">
-            <h1 className="text-3xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">Shelf</h1>
-            <p className="max-w-2xl text-base leading-7 text-neutral-600 dark:text-neutral-400">
-              A loose collection of favorites, references, and things I keep coming back to.
-            </p>
-          </div>
+          <SubpageTitleRow>Shelf</SubpageTitleRow>
+          <p className={subpageHeaderTaglineClassName}>
+            A loose collection of favorites, references, and things I keep coming back to.
+          </p>
         </header>
 
         <section className="space-y-3">

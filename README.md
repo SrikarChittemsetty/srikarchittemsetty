@@ -7,18 +7,18 @@ A minimalist personal platform for showcasing engineering work, writing, and ong
 This portfolio is designed as a living product surface:
 
 - Present selected projects with clear technical context
-- Integrate blog content from VoicePress
+- Publish blog posts from the repository (`src/data/blog.ts`)
 - Curate media/book recommendations in Shelf
-- Offer an optional interactive House explorer
+- Offer optional Behind the Scenes (interactive portfolio map)
 - Maintain a polished light/dark mode experience
 
 ## Feature Overview
 
 - **Featured Builds:** selected finished work on the homepage for quick recruiter review
 - **Garage:** searchable tools, systems, and project cards with descriptions, rationale, and links
-- **VoicePress-powered blog:** pulls public posts from the VoicePress API
+- **Blog:** posts are data in-repo; add an entry to `blogPosts` and ship with git
 - **Shelf:** curated media with clean presentation
-- **Interactive House:** optional exploratory navigation layer
+- **Behind the Scenes:** optional exploratory navigation layer (`/house`)
 - **Theme support:** light/dark mode with persisted preference
 
 ## Stack
@@ -28,7 +28,7 @@ This portfolio is designed as a living product surface:
 - TypeScript
 - Tailwind CSS
 - Vercel (frontend hosting)
-- VoicePress API (blog backend integration)
+- No external CMS for the blog (content ships with the app)
 
 ## Local Setup
 
@@ -46,18 +46,14 @@ npm run lint
 npm run build
 ```
 
-## Environment Variable
+## Blog authoring
 
-`NEXT_PUBLIC_VOICEPRESS_API_BASE_URL`
-
-- **Local default behavior:** if unset, blog pages fall back to `http://127.0.0.1:5000`
-- **Production:** set to your deployed VoicePress backend URL (for example, a Render service URL)
+- Edit **`src/data/blog.ts`**: append to the **`blogPosts`** array (`title`, `slug`, `created_at`, `body`, optional `excerpt` / `category` / `tags` / `cover_image_url`).
+- Each **`slug`** becomes **`/blog/[slug]`**. List order is by **`created_at`** (newest first) on `/blog`.
 
 ## Deployment Notes
 
-- **Frontend:** deploy this repository on Vercel
-- **Backend/blog data:** deploy VoicePress on Render and expose the public API
-- **Integration:** set `NEXT_PUBLIC_VOICEPRESS_API_BASE_URL` in Vercel environment settings
+- **Frontend:** deploy this repository on Vercel (blog content is included in the build).
 
 ## Recruiter / Reviewer Notes
 

@@ -1,20 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import ThemeToggle from "@/components/theme-toggle";
-import { localFallbackPosts, type LocalBlogPost } from "@/data/blog";
-
-type VoicePressPost = {
-  title: string;
-  slug: string;
-  excerpt?: string;
-  cover_image_url?: string;
-  created_at?: string;
-  tags?: string;
-  category?: string;
-};
-
-const VOICEPRESS_API_BASE_URL =
-  process.env.NEXT_PUBLIC_VOICEPRESS_API_BASE_URL ?? "http://127.0.0.1:5000";
+import { SubpageTitleRow, subpageHeaderTaglineClassName } from "@/components/subpage-title-row";
+import { blogIntroQuote, getAllBlogPosts, type BlogPost } from "@/data/blog";
 
 function formatDate(value?: string) {
   if (!value) return null;
@@ -27,27 +14,7 @@ function formatDate(value?: string) {
   }).format(date);
 }
 
-async function getPosts(): Promise<{ posts: VoicePressPost[]; unavailable: boolean }> {
-  try {
-    const response = await fetch(`${VOICEPRESS_API_BASE_URL}/api/posts`, {
-      cache: "no-store",
-    });
-    if (!response.ok) {
-      return { posts: [], unavailable: true };
-    }
-    const data = (await response.json()) as VoicePressPost[];
-    if (!Array.isArray(data)) {
-      return { posts: [], unavailable: true };
-    }
-    return { posts: data, unavailable: false };
-  } catch {
-    return { posts: [], unavailable: true };
-  }
-}
-
-type BlogListPost = VoicePressPost | LocalBlogPost;
-
-function PostList({ posts }: { posts: BlogListPost[] }) {
+function PostList({ posts }: { posts: BlogPost[] }) {
   return (
     <div className="divide-y divide-neutral-200 border-y border-neutral-200 dark:divide-neutral-800 dark:border-neutral-800">
       {posts.map((post) => (
@@ -90,43 +57,36 @@ function PostList({ posts }: { posts: BlogListPost[] }) {
   );
 }
 
-export default async function BlogPage() {
-  const { posts, unavailable } = await getPosts();
-  const hasVoicePressPosts = posts.length > 0;
+function quoteAsSingleParagraph(text: string) {
+  return text.replace(/\s+/g, " ").trim();
+}
+
+export default function BlogPage() {
+  const posts = getAllBlogPosts();
+  const quoteText = quoteAsSingleParagraph(blogIntroQuote.text);
 
   return (
     <div className="min-h-screen bg-[#fafafa] font-sans text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <main className="mx-auto flex w-full max-w-[800px] flex-col gap-10 px-6 py-12 sm:py-16">
         <header className="space-y-4 border-b border-neutral-200 pb-8 dark:border-neutral-800">
-          <div className="flex items-center justify-between gap-4">
-            <Link
-              href="/"
-              className="inline-flex text-sm text-neutral-600 transition-all duration-200 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
-            >
-              ← Back to Home
-            </Link>
-            <ThemeToggle />
-          </div>
-          <div className="space-y-2">
-            <h1 className="text-3xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">Blog</h1>
-            <p className="max-w-2xl text-base leading-7 text-neutral-600 dark:text-neutral-400">
-              Engineering notes, project breakdowns, and technical writing, with VoicePress sync
-              plus local portfolio fallback posts.
+          <SubpageTitleRow>Blog</SubpageTitleRow>
+          <blockquote className="max-w-none border-l-2 border-neutral-300 pl-3 dark:border-neutral-600 sm:pl-4">
+            <p className="text-xs leading-snug tracking-tighter italic text-neutral-600 dark:text-neutral-400 sm:text-[13px] sm:tracking-tight">
+              {quoteText}
             </p>
-          </div>
+            {blogIntroQuote.attribution ? (
+              <footer className="mt-2 text-[11px] font-medium not-italic text-neutral-500 dark:text-neutral-400 sm:text-xs">
+                — <cite>{blogIntroQuote.attribution}</cite>
+              </footer>
+            ) : null}
+          </blockquote>
+          <p className={subpageHeaderTaglineClassName}>
+            For blueprints, notes to self, and rabbit holes.
+          </p>
         </header>
 
         <section className="space-y-3">
-          {unavailable ? (
-            <p className="border-y border-neutral-200 px-2 py-5 text-sm leading-6 text-neutral-600 dark:border-neutral-800 dark:text-neutral-400">
-              Writing is temporarily unavailable. VoicePress may be waking up or redeploying; try
-              refreshing in a moment.
-            </p>
-          ) : hasVoicePressPosts ? (
-            <PostList posts={posts} />
-          ) : (
-            <PostList posts={localFallbackPosts} />
-          )}
+          <PostList posts={posts} />
         </section>
       </main>
     </div>

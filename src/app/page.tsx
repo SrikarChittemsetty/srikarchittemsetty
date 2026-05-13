@@ -1,5 +1,5 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { House, Mail } from "lucide-react";
+import { Mail, ScanEye } from "lucide-react";
 import Link from "next/link";
 import { projects } from "@/data/projects";
 import { openSourceContributions } from "@/data/open-source";
@@ -12,7 +12,7 @@ const portalLinks = [
   { label: "Projects", href: "/projects" },
   { label: "Writing", href: "/blog" },
   { label: "Shelf", href: "/shelf" },
-  { label: "Brainscape", href: "/house" },
+  { label: "Behind the Scenes", href: "/house" },
 ];
 
 function Header() {
@@ -49,10 +49,10 @@ function Header() {
         </a>
         <Link
           href="/house"
-          aria-label="Brainscape"
+          aria-label="Open Behind the Scenes portfolio map"
           className="rounded-md p-1 transition-all duration-200 hover:bg-black/5 hover:text-black/70 dark:hover:bg-white/10 dark:hover:text-neutral-300"
         >
-          <House size={16} />
+          <ScanEye size={16} />
         </Link>
         <ThemeToggle />
       </nav>
@@ -77,9 +77,10 @@ function Intro() {
         </a>
         <Link
           href="/house"
+          aria-label="Open Behind the Scenes portfolio map"
           className="inline-flex rounded-md border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-900 transition-all duration-200 hover:border-neutral-400 hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-100 dark:hover:border-neutral-600 dark:hover:bg-neutral-900"
         >
-          Enter the Brainscape
+          Behind the Scenes
         </Link>
       </div>
     </section>
@@ -126,7 +127,7 @@ function ExploreLinks() {
         Portfolio Paths
       </h2>
       <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-400">
-        Start with the technical work, then branch into writing, references, or the Brainscape if
+        Start with the technical work, then branch into writing, references, or Behind the Scenes if
         you want the more personal version of the portfolio.
       </p>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">

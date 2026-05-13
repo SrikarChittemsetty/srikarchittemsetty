@@ -1,12 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useDeferredValue, useMemo, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { projects } from "@/data/projects";
 import { openSourceContributions } from "@/data/open-source";
-import ThemeToggle from "@/components/theme-toggle";
+import { SubpageTitleRow, subpageHeaderTaglineClassName } from "@/components/subpage-title-row";
+
+const contributionStatusClassName = {
+  Merged:
+    "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900/70 dark:bg-emerald-950/60 dark:text-emerald-300",
+  Open:
+    "border-blue-200 bg-blue-50 text-blue-700 dark:border-blue-900/70 dark:bg-blue-950/60 dark:text-blue-300",
+};
 
 export default function ProjectsPage() {
   const [query, setQuery] = useState("");
@@ -29,23 +35,12 @@ export default function ProjectsPage() {
     <div className="min-h-screen bg-[#fafafa] font-sans text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <main className="mx-auto flex w-full max-w-[800px] flex-col gap-10 px-6 py-12 sm:py-16">
         <header className="space-y-4 border-b border-neutral-200 pb-8 dark:border-neutral-800">
-          <div className="flex items-center justify-between gap-4">
-            <Link
-              href="/"
-              className="inline-flex text-sm text-neutral-600 transition-all duration-200 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
-            >
-              ← Back to Home
-            </Link>
-            <ThemeToggle />
-          </div>
-          <div className="space-y-2">
-            <h1 className="text-3xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">Garage</h1>
-            <p className="max-w-2xl text-base leading-7 text-neutral-600 dark:text-neutral-400">
-              Tools, systems, and finished builds I&apos;m turning into reusable parts of my workflow.
-              For now, this is also the deeper project gallery and public contribution record behind the
-              homepage showcase.
-            </p>
-          </div>
+          <SubpageTitleRow>Garage</SubpageTitleRow>
+          <p className={subpageHeaderTaglineClassName}>
+            Tools, systems, and finished builds I&apos;m turning into reusable parts of my workflow.
+            For now, this is also the deeper project gallery and public contribution record behind the
+            homepage showcase.
+          </p>
         </header>
 
         <section className="space-y-3">
@@ -140,7 +135,11 @@ export default function ProjectsPage() {
                     <p className="text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
                       {contribution.repository}
                     </p>
-                    <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-700 dark:border-emerald-900/70 dark:bg-emerald-950/60 dark:text-emerald-300">
+                    <span
+                      className={`rounded-full border px-2.5 py-0.5 text-xs font-medium ${
+                        contributionStatusClassName[contribution.status]
+                      }`}
+                    >
                       {contribution.status}
                     </span>
                   </div>
