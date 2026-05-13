@@ -2,6 +2,9 @@
 
 A minimalist personal platform for showcasing engineering work, writing, and ongoing experiments in one cohesive experience.
 
+**Live site:** https://srikarchittemsetty.vercel.app  
+**GitHub profile:** https://github.com/SrikarChittemsetty
+
 ## Purpose
 
 This portfolio is designed as a living product surface:
