@@ -61,11 +61,11 @@ const spotConfigs: SpotConfig[] = [
   {
     id: "study",
     name: "Study",
-    href: "/blog",
+    href: "/activity",
     icon: BookOpen,
     iconClassName: "h-5 w-5 sm:h-7 sm:w-7",
-    livesThere: "Writing and project notes: essays, engineering breakdowns, and longer reflections.",
-    action: "Open the study journal.",
+    livesThere: "Daily work journal: a quick note on what I did, read, learned, or finished.",
+    action: "Open the activity journal.",
     zone: "left-[68%] top-[39%] h-[24%] w-[18%]",
   },
   {

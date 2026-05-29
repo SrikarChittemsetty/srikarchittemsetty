@@ -10,7 +10,7 @@ A minimalist personal platform for showcasing engineering work, writing, and ong
 This portfolio is designed as a living product surface:
 
 - Present selected projects with clear technical context
-- Publish blog posts from the repository (`src/data/blog.ts`)
+- Keep a daily work journal in the repository (`src/data/activity.ts`)
 - Curate media/book recommendations in Shelf
 - Offer optional Behind the Scenes (interactive portfolio map)
 - Maintain a polished light/dark mode experience
@@ -19,7 +19,7 @@ This portfolio is designed as a living product surface:
 
 - **Featured Builds:** selected finished work on the homepage for quick recruiter review
 - **Garage:** searchable tools, systems, and project cards with descriptions, rationale, and links
-- **Blog:** posts are data in-repo; add an entry to `blogPosts` and ship with git
+- **Activity:** daily journal entries in-repo; add a day to `activityJournal` and ship with git
 - **Shelf:** curated media with clean presentation
 - **Behind the Scenes:** optional exploratory navigation layer (`/house`)
 - **Theme support:** light/dark mode with persisted preference
@@ -31,7 +31,6 @@ This portfolio is designed as a living product surface:
 - TypeScript
 - Tailwind CSS
 - Vercel (frontend hosting)
-- No external CMS for the blog (content ships with the app)
 
 ## Local Setup
 
@@ -49,14 +48,13 @@ npm run lint
 npm run build
 ```
 
-## Blog authoring
+## Activity authoring
 
-- Edit **`src/data/blog.ts`**: append to the **`blogPosts`** array (`title`, `slug`, `created_at`, `body`, optional `excerpt` / `category` / `tags` / `cover_image_url`).
-- Each **`slug`** becomes **`/blog/[slug]`**. List order is by **`created_at`** (newest first) on `/blog`.
+Edit **`src/data/activity.ts`**: append to the **`activityJournal`** array with `date` (ISO `YYYY-MM-DD`) and `note` (one short paragraph). List order is by **`date`** (newest first) on `/activity`.
 
 ## Deployment Notes
 
-- **Frontend:** deploy this repository on Vercel (blog content is included in the build).
+- **Frontend:** deploy this repository on Vercel (activity content is included in the build).
 
 ## Recruiter / Reviewer Notes
 

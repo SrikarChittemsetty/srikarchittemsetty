@@ -10,7 +10,7 @@ const latestOpenSourceContribution = openSourceContributions[0];
 
 const portalLinks = [
   { label: "Projects", href: "/projects" },
-  { label: "Writing", href: "/blog" },
+  { label: "Activity", href: "/activity" },
   { label: "Shelf", href: "/shelf" },
   { label: "Behind the Scenes", href: "/house" },
 ];
@@ -124,23 +124,19 @@ function ExploreLinks() {
   return (
     <section className="space-y-3">
       <h2 className="text-sm font-medium uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
-        Portfolio Paths
+        Explore
       </h2>
-      <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-400">
-        Start with the technical work, then branch into writing, references, or Behind the Scenes if
-        you want the more personal version of the portfolio.
-      </p>
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
         {portalLinks.map((link) => (
           <a
             key={link.label}
             href={link.href}
-            className="group flex items-center justify-between rounded-lg bg-neutral-100 px-6 py-7 text-neutral-900 transition-all duration-200 hover:bg-neutral-200/80 dark:bg-neutral-900 dark:text-neutral-100 dark:hover:bg-neutral-800"
+            className="group flex items-center justify-between rounded-lg bg-neutral-100 px-3.5 py-3.5 text-neutral-900 transition-all duration-200 hover:bg-neutral-200/80 sm:px-4 sm:py-4 dark:bg-neutral-900 dark:text-neutral-100 dark:hover:bg-neutral-800"
           >
-            <span className="text-xl font-semibold tracking-tight">{link.label}</span>
+            <span className="text-sm font-semibold tracking-tight sm:text-base">{link.label}</span>
             <span
               aria-hidden="true"
-              className="text-lg text-neutral-500 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-neutral-900 dark:text-neutral-400 dark:group-hover:text-neutral-100"
+              className="text-sm text-neutral-500 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-neutral-900 dark:text-neutral-400 dark:group-hover:text-neutral-100"
             >
               →
             </span>

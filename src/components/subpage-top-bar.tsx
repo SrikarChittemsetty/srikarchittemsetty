@@ -3,7 +3,7 @@ import { House } from "lucide-react";
 import ThemeToggle from "@/components/theme-toggle";
 
 type Props = {
-  /** When set with `backLabel`, a text link to the parent (e.g. blog index). Omit when home is only the house icon. */
+  /** When set with `backLabel`, a text link to the parent (e.g. activity index). Omit when home is only the house icon. */
   backHref?: string;
   backLabel?: string;
 };
