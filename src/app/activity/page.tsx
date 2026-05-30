@@ -1,5 +1,9 @@
 import { SubpageTitleRow, subpageHeaderTaglineClassName } from "@/components/subpage-title-row";
-import { getAllActivity, type ActivityEntry } from "@/data/activity";
+import { activityIntroQuote, getAllActivity, type ActivityEntry } from "@/data/activity";
+
+function quoteAsSingleParagraph(text: string) {
+  return text.replace(/\s+/g, " ").trim();
+}
 
 function formatDate(value: string) {
   const date = new Date(value + "T12:00:00");
@@ -40,14 +44,25 @@ function JournalList({ entries }: { entries: ActivityEntry[] }) {
 
 export default function ActivityPage() {
   const entries = getAllActivity();
+  const quoteText = quoteAsSingleParagraph(activityIntroQuote.text);
 
   return (
     <div className="min-h-screen bg-[#fafafa] font-sans text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <main className="mx-auto flex w-full max-w-[800px] flex-col gap-10 px-6 py-12 sm:py-16">
         <header className="space-y-4 border-b border-neutral-200 pb-8 dark:border-neutral-800">
           <SubpageTitleRow>Activity</SubpageTitleRow>
+          <blockquote className="max-w-none border-l-2 border-neutral-300 pl-3 dark:border-neutral-600 sm:pl-4">
+            <p className="text-xs leading-snug tracking-tighter italic text-neutral-600 dark:text-neutral-400 sm:text-[13px] sm:tracking-tight">
+              {quoteText}
+            </p>
+            {activityIntroQuote.attribution ? (
+              <footer className="mt-2 text-[11px] font-medium not-italic text-neutral-500 dark:text-neutral-400 sm:text-xs">
+                — <cite>{activityIntroQuote.attribution}</cite>
+              </footer>
+            ) : null}
+          </blockquote>
           <p className={subpageHeaderTaglineClassName}>
-            A short daily note on what I worked on, read, learned, practiced, or finished.
+            Chronicling how I spend each day of my 4,000 weeks.
           </p>
         </header>
 
