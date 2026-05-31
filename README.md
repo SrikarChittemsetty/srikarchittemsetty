@@ -10,7 +10,7 @@ A minimalist personal platform for showcasing engineering work, writing, and ong
 This portfolio is designed as a living product surface:
 
 - Present selected projects with clear technical context
-- Keep a daily work journal in the repository (`src/data/activity.ts`)
+- Keep a daily work journal in Git-backed content files (`content/activity/`)
 - Curate media/book recommendations in Shelf
 - Offer optional Behind the Scenes (interactive portfolio map)
 - Maintain a polished light/dark mode experience
@@ -19,7 +19,7 @@ This portfolio is designed as a living product surface:
 
 - **Featured Builds:** selected finished work on the homepage for quick recruiter review
 - **Garage:** searchable tools, systems, and project cards with descriptions, rationale, and links
-- **Activity:** daily journal entries in-repo; add a day to `activityJournal` and ship with git
+- **Activity:** daily journal entries as JSON in-repo; edit via `/admin` (Decap CMS) or commit directly
 - **Shelf:** curated media with clean presentation
 - **Behind the Scenes:** optional exploratory navigation layer (`/house`)
 - **Theme support:** light/dark mode with persisted preference
@@ -30,12 +30,14 @@ This portfolio is designed as a living product surface:
 - React
 - TypeScript
 - Tailwind CSS
+- Decap CMS (Git-backed Activity editor)
 - Vercel (frontend hosting)
 
 ## Local Setup
 
 ```bash
 npm install
+cp .env.example .env.local   # optional for local CMS publishing
 npm run dev
 ```
 
@@ -50,11 +52,39 @@ npm run build
 
 ## Activity authoring
 
-Edit **`src/data/activity.ts`**: append to the **`activityJournal`** array with `date` (ISO `YYYY-MM-DD`) and `note` (one short paragraph). List order is by **`date`** (newest first) on `/activity`.
+Each entry is a JSON file in **`content/activity/`** with `date` and `note`:
+
+```json
+{
+  "date": "2026-05-29",
+  "note": "One short paragraph for the day."
+}
+```
+
+The Activity page reads these files and sorts by date (newest first).
+
+### Admin editor (Decap CMS)
+
+Edit at **`/admin`** without touching code.
+
+**Local editing (recommended for dev):**
+
+1. Terminal 1: `npm run dev`
+2. Terminal 2: `npm run cms:proxy`
+3. Open `http://localhost:3000/admin`
+4. Create or edit **Activity Entry** → **Publish** (writes to `content/activity/` locally)
+
+**Production publishing (GitHub):**
+
+1. Create a [GitHub OAuth App](https://github.com/settings/developers):
+   - Homepage URL: `https://srikarchittemsetty.vercel.app`
+   - Callback URL: `https://srikarchittemsetty.vercel.app/api/auth/callback`
+2. Add to Vercel env vars: `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `NEXT_PUBLIC_SITE_URL`
+3. Open `https://srikarchittemsetty.vercel.app/admin`, sign in with GitHub, publish — Decap commits to the repo and Vercel redeploys.
 
 ## Deployment Notes
 
-- **Frontend:** deploy this repository on Vercel (activity content is included in the build).
+- **Frontend:** deploy this repository on Vercel. Activity content ships in the repo under `content/activity/`.
 
 ## Recruiter / Reviewer Notes
 

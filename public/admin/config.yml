@@ -1,0 +1,37 @@
+local_backend: true
+
+backend:
+  name: github
+  repo: SrikarChittemsetty/srikarchittemsetty
+  branch: main
+  base_url: https://srikarchittemsetty.vercel.app
+  auth_endpoint: api/auth
+
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: activity
+    label: Activity
+    label_singular: Activity Entry
+    folder: content/activity
+    create: true
+    slug: "{{fields.date}}"
+    extension: json
+    format: json
+    identifier_field: date
+    summary: "{{fields.date}}"
+    sortable_fields: [date]
+    fields:
+      - label: Date
+        name: date
+        widget: datetime
+        format: YYYY-MM-DD
+        date_format: YYYY-MM-DD
+        time_format: false
+        required: true
+      - label: Note
+        name: note
+        widget: text
+        required: true
+        hint: One short paragraph — what you worked on, read, learned, practiced, or finished.

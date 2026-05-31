@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { SubpageTitleRow, subpageHeaderTaglineClassName } from "@/components/subpage-title-row";
-import { activityIntroQuote, getAllActivity, type ActivityEntry } from "@/data/activity";
+import { activityIntroQuote } from "@/data/activity";
+import { getAllActivity, type ActivityEntry } from "@/lib/activity-content";
 
 function quoteAsSingleParagraph(text: string) {
   return text.replace(/\s+/g, " ").trim();
@@ -19,8 +21,12 @@ function JournalList({ entries }: { entries: ActivityEntry[] }) {
   if (entries.length === 0) {
     return (
       <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-400">
-        No entries yet — add a day to{" "}
-        <code className="font-mono text-xs">src/data/activity.ts</code>.
+        No entries yet — add one in the{" "}
+        <Link href="/admin" className="underline underline-offset-2">
+          admin editor
+        </Link>{" "}
+        or add a JSON file to{" "}
+        <code className="font-mono text-xs">content/activity/</code>.
       </p>
     );
   }
