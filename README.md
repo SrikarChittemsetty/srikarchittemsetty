@@ -12,7 +12,7 @@ This portfolio is designed as a living product surface:
 - Present selected projects with clear technical context
 - Keep a daily work journal in Git-backed content files (`content/activity/`)
 - Curate media/book recommendations in Shelf
-- Offer optional Behind the Scenes (interactive portfolio map)
+- Offer an optional Mind Map (interactive portfolio map)
 - Maintain a polished light/dark mode experience
 
 ## Feature Overview
@@ -21,7 +21,7 @@ This portfolio is designed as a living product surface:
 - **Garage:** searchable tools, systems, and project cards with descriptions, rationale, and links
 - **Activity:** daily journal entries as JSON in-repo; edit via `/admin` (Decap CMS) or commit directly
 - **Shelf:** curated media with clean presentation
-- **Behind the Scenes:** optional exploratory navigation layer (`/house`)
+- **Mind Map:** optional exploratory navigation layer (`/house`)
 - **Theme support:** light/dark mode with persisted preference
 
 ## Stack

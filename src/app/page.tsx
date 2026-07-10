@@ -12,7 +12,7 @@ const portalLinks = [
   { label: "Projects", href: "/projects" },
   { label: "Activity", href: "/activity" },
   { label: "Shelf", href: "/shelf" },
-  { label: "Behind the Scenes", href: "/house" },
+  { label: "Mind Map", href: "/house" },
 ];
 
 function Header() {
@@ -49,7 +49,7 @@ function Header() {
         </a>
         <Link
           href="/house"
-          aria-label="Open Behind the Scenes portfolio map"
+          aria-label="Open Mind Map portfolio map"
           className="rounded-md p-1 transition-all duration-200 hover:bg-black/5 hover:text-black/70 dark:hover:bg-white/10 dark:hover:text-neutral-300"
         >
           <ScanEye size={16} />
@@ -77,10 +77,10 @@ function Intro() {
         </a>
         <Link
           href="/house"
-          aria-label="Open Behind the Scenes portfolio map"
+          aria-label="Open Mind Map portfolio map"
           className="inline-flex rounded-md border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-900 transition-all duration-200 hover:border-neutral-400 hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-100 dark:hover:border-neutral-600 dark:hover:bg-neutral-900"
         >
-          Behind the Scenes
+          Mind Map
         </Link>
       </div>
     </section>

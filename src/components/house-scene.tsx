@@ -278,7 +278,7 @@ export default function HouseScene() {
 
       <aside className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm dark:border-neutral-800 dark:bg-neutral-900/50">
         <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
-          Behind the Scenes guide
+          Mind Map guide
         </p>
         <h2 className="mt-3 text-xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">{selectedRoom.name}</h2>
 
