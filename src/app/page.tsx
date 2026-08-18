@@ -65,9 +65,11 @@ function Intro() {
   return (
     <section className="space-y-5">
       <p className="max-w-3xl text-base leading-7 text-neutral-700 dark:text-neutral-300 sm:text-lg sm:leading-8">
-        Welcome! I&apos;m Srikar, an engineer at the University of Chicago. This is a comprehensive
-        account of my work, active and past, and a window into how I think through projects,
-        systems, and ideas.
+        Welcome! I&apos;m Srikar — I study computational &amp; applied math and philosophy at the
+        University of Chicago, and I&apos;m currently a software engineering intern on the
+        infrastructure &amp; platform team at ForkLaunch in San Francisco. I build systems that
+        stay correct when things fail: exactly-once execution, retrieval that can be measured,
+        ingest that survives overload. This site is the working record.
       </p>
       <div className="flex flex-wrap gap-3">
         {SECTIONS_LIVE.projects ? (

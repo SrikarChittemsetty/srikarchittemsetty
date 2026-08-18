@@ -1,0 +1,36 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#F7F7F4"/>
+  <rect x="110" y="90" width="980" height="620" rx="28" fill="#FFFFFF" stroke="#E3E1DC" stroke-width="3"/>
+
+  <rect x="150" y="136" width="260" height="110" rx="18" fill="#111111"/>
+  <rect x="450" y="136" width="260" height="110" rx="18" fill="#EDEBE6"/>
+  <rect x="750" y="136" width="260" height="110" rx="18" fill="#EDEBE6"/>
+  <text x="182" y="190" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Memory cap</text>
+  <text x="182" y="224" fill="#D7D3CB" font-family="Inter, Arial, sans-serif" font-size="22">256 MB</text>
+  <text x="482" y="190" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Samples offered</text>
+  <text x="482" y="224" fill="#68645D" font-family="Inter, Arial, sans-serif" font-size="22">20,000,000</text>
+  <text x="782" y="190" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Throughput</text>
+  <text x="782" y="224" fill="#68645D" font-family="Inter, Arial, sans-serif" font-size="22">1.67M/s</text>
+
+  <!-- Same container, same cardinality bomb, two ingesters. The exit codes
+       are the measured result, so the visual is the benchmark itself. -->
+  <text x="150" y="320" fill="#68645D" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="600">SAME LABEL EXPLOSION, SAME 256 MB CONTAINER</text>
+
+  <rect x="150" y="344" width="900" height="72" rx="16" fill="#FAFAF8" stroke="#E3E1DC" stroke-width="2"/>
+  <circle cx="190" cy="380" r="18" fill="#111111"/>
+  <text x="232" y="374" fill="#2A2927" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Peras</text>
+  <text x="232" y="400" fill="#8B867C" font-family="Inter, Arial, sans-serif" font-size="18">budget breached &#8594; exploding label aggregated away &#183; heap ~3 MB flat</text>
+  <text x="880" y="388" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">exit 0</text>
+
+  <rect x="150" y="440" width="900" height="72" rx="16" fill="#FAFAF8" stroke="#E3E1DC" stroke-width="2"/>
+  <circle cx="190" cy="476" r="18" fill="#C4C0B7"/>
+  <text x="232" y="470" fill="#2A2927" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Naive ingester</text>
+  <text x="232" y="496" fill="#8B867C" font-family="Inter, Arial, sans-serif" font-size="18">one series per unique label set &#183; heap 46&#8594;206 MB, then killed</text>
+  <text x="828" y="484" fill="#68645D" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">exit 137</text>
+
+  <rect x="150" y="536" width="900" height="56" rx="16" fill="#FFFFFF" stroke="#E3E1DC" stroke-width="2"/>
+  <text x="182" y="571" fill="#68645D" font-family="Inter, Arial, sans-serif" font-size="19">56 ns/admission, 0 allocs &#183; OTLP/gRPC in &#183; culprit named: api_latency.request_id</text>
+
+  <text x="150" y="645" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="800">Peras</text>
+  <text x="150" y="681" fill="#68645D" font-family="Inter, Arial, sans-serif" font-size="24">Metrics ingest that survives the cardinality bomb</text>
+</svg>

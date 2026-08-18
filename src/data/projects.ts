@@ -41,6 +41,20 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    icon: "🧯",
+    name: "Peras",
+    description:
+      "A metrics ingest pipeline that survives the label explosion that OOM-kills a naive one — proven by exit code. Same 20M-sample workload in the same 256 MB container: the naive ingester dies at 8M samples; Peras completes all 20M at 1.67M samples/s with ~3 MB of heap.",
+    why:
+      "Built after measuring, while instrumenting Hapax, what one high-cardinality label costs: adding task_id took an export from 22 series to 30,019 and the payload up 1,488x. Peras is the ingest-side defense — it attributes a breach to the exploding label dimension at runtime and aggregates it away instead of crashing, and CI re-proves the die-vs-survive contrast on every push.",
+    href: "https://github.com/SrikarChittemsetty/peras",
+    year: "2026",
+    status: "Built",
+    image: "/projects/peras.svg",
+    tags: ["Go", "gRPC", "OpenTelemetry", "Kubernetes", "Observability"],
+    featured: true,
+  },
+  {
     icon: "🌐",
     name: "Personal Ecosystem Portfolio",
     description:
@@ -52,7 +66,7 @@ export const projects: Project[] = [
     status: "Built",
     image: "/projects/personal-ecosystem-portfolio.svg",
     tags: ["Next.js", "TypeScript", "Tailwind", "Vercel", "Portfolio"],
-    featured: true,
+    featured: false,
   },
   {
     icon: "💳",
@@ -66,7 +80,7 @@ export const projects: Project[] = [
     status: "MVP",
     image: "/projects/subhub.svg",
     tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Auth"],
-    featured: true,
+    featured: false,
   },
   {
     icon: "🧩",
@@ -80,7 +94,7 @@ export const projects: Project[] = [
     status: "Prototype",
     image: "/projects/modular-context.svg",
     tags: ["Python", "Streamlit", "OpenAI API", "Context Engineering"],
-    featured: true,
+    featured: false,
   },
   {
     icon: "📝",
@@ -94,7 +108,7 @@ export const projects: Project[] = [
     status: "Built",
     image: "/projects/voicepress.svg",
     tags: ["Flask", "SQLite", "Markdown", "Auth", "Testing"],
-    featured: true,
+    featured: false,
   },
   {
     icon: "🧠",

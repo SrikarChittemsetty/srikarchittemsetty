@@ -8,5 +8,5 @@
  */
 export const SECTIONS_LIVE = {
   activity: false,
-  projects: false,
+  projects: true,
 } as const;
