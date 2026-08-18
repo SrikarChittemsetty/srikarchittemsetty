@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { SECTIONS_LIVE } from "@/lib/feature-flags";
 
 type SpotId = "entry" | "shelf" | "kitchen" | "study" | "garage" | "attic" | "basement";
 
@@ -61,22 +62,26 @@ const spotConfigs: SpotConfig[] = [
   {
     id: "study",
     name: "Study",
-    href: "/activity",
+    ...(SECTIONS_LIVE.activity ? { href: "/activity" } : {}),
     icon: BookOpen,
     iconClassName: "h-5 w-5 sm:h-7 sm:w-7",
     livesThere: "Daily work journal: a quick note on what I did, read, learned, or finished.",
-    action: "Open the activity journal.",
+    action: SECTIONS_LIVE.activity
+      ? "Open the activity journal."
+      : "The study opens once the journal is worth reading.",
     zone: "left-[68%] top-[39%] h-[24%] w-[18%]",
   },
   {
     id: "garage",
     name: "Garage",
-    href: "/projects",
+    ...(SECTIONS_LIVE.projects ? { href: "/projects" } : {}),
     icon: Toolbox,
     iconClassName: "h-6 w-6 sm:h-9 sm:w-9",
     livesThere:
       "Projects, builds, and public contributions—the workshop wall for things I make and keep improving.",
-    action: "Roll up the garage door to the project gallery.",
+    action: SECTIONS_LIVE.projects
+      ? "Roll up the garage door to the project gallery."
+      : "The garage door stays down until the gallery is ready.",
     zone: "left-[11%] top-[67%] h-[17%] w-[22%]",
   },
   {

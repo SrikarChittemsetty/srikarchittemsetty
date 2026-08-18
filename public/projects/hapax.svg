@@ -1,0 +1,38 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#F7F7F4"/>
+  <rect x="110" y="90" width="980" height="620" rx="28" fill="#FFFFFF" stroke="#E3E1DC" stroke-width="3"/>
+
+  <rect x="150" y="136" width="260" height="110" rx="18" fill="#111111"/>
+  <rect x="450" y="136" width="260" height="110" rx="18" fill="#EDEBE6"/>
+  <rect x="750" y="136" width="260" height="110" rx="18" fill="#EDEBE6"/>
+  <text x="182" y="190" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Randomized kills</text>
+  <text x="182" y="224" fill="#D7D3CB" font-family="Inter, Arial, sans-serif" font-size="22">500</text>
+  <text x="482" y="190" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Double charges</text>
+  <text x="482" y="224" fill="#68645D" font-family="Inter, Arial, sans-serif" font-size="22">0</text>
+  <text x="782" y="190" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Naive control</text>
+  <text x="782" y="224" fill="#68645D" font-family="Inter, Arial, sans-serif" font-size="22">121</text>
+
+  <!-- Same harness, two implementations. The bar lengths are the measured
+       counts, so the visual is the result rather than a decoration. -->
+  <text x="150" y="320" fill="#68645D" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="600">DOUBLE CHARGES UNDER 500 kill -9</text>
+
+  <rect x="150" y="344" width="900" height="72" rx="16" fill="#FAFAF8" stroke="#E3E1DC" stroke-width="2"/>
+  <circle cx="190" cy="380" r="18" fill="#111111"/>
+  <text x="232" y="374" fill="#2A2927" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Hapax</text>
+  <text x="232" y="400" fill="#8B867C" font-family="Inter, Arial, sans-serif" font-size="18">lease + single-transaction commit</text>
+  <rect x="620" y="368" width="6" height="24" rx="3" fill="#111111"/>
+  <text x="950" y="388" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">0</text>
+
+  <rect x="150" y="440" width="900" height="72" rx="16" fill="#FAFAF8" stroke="#E3E1DC" stroke-width="2"/>
+  <circle cx="190" cy="476" r="18" fill="#C4C0B7"/>
+  <text x="232" y="470" fill="#2A2927" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Naive worker</text>
+  <text x="232" y="496" fill="#8B867C" font-family="Inter, Arial, sans-serif" font-size="18">dedup state in memory, dies with the process</text>
+  <rect x="620" y="464" width="300" height="24" rx="12" fill="#C4C0B7"/>
+  <text x="950" y="484" fill="#68645D" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">121</text>
+
+  <rect x="150" y="536" width="900" height="56" rx="16" fill="#FFFFFF" stroke="#E3E1DC" stroke-width="2"/>
+  <text x="182" y="571" fill="#68645D" font-family="Inter, Arial, sans-serif" font-size="19">4,949 tasks/s peak &#183; p50 crash-to-recovery 20 ms &#183; 114 tests</text>
+
+  <text x="150" y="645" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="800">Hapax</text>
+  <text x="150" y="681" fill="#68645D" font-family="Inter, Arial, sans-serif" font-size="24">Exactly-once task execution for AI agents</text>
+</svg>

@@ -1,7 +1,9 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { SubpageTitleRow, subpageHeaderTaglineClassName } from "@/components/subpage-title-row";
+import { SECTIONS_LIVE } from "@/lib/feature-flags";
 import { activityIntroQuote } from "@/data/activity";
-import { getAllActivity, type ActivityEntry } from "@/lib/activity-content";
+import { getActivityByDay, type ActivityDay, type ActivityEntry } from "@/lib/activity-content";
 
 function quoteAsSingleParagraph(text: string) {
   return text.replace(/\s+/g, " ").trim();
@@ -17,8 +19,47 @@ function formatDate(value: string) {
   }).format(date);
 }
 
-function JournalList({ entries }: { entries: ActivityEntry[] }) {
-  if (entries.length === 0) {
+function Fragment({ entry }: { entry: ActivityEntry }) {
+  const heading = entry.title ?? entry.link;
+
+  return (
+    <li className="space-y-1">
+      {heading ? (
+        <p className="text-base leading-7 text-neutral-800 dark:text-neutral-200">
+          {entry.link ? (
+            <a
+              href={entry.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 decoration-neutral-400 hover:decoration-neutral-900 dark:decoration-neutral-600 dark:hover:decoration-neutral-100"
+            >
+              {heading}
+            </a>
+          ) : (
+            heading
+          )}
+          {entry.source ? (
+            <span className="text-neutral-500 dark:text-neutral-400">
+              {" "}
+              — {entry.source}
+            </span>
+          ) : null}
+          {entry.kind ? (
+            <span className="ml-2 text-xs uppercase tracking-wide text-neutral-400 dark:text-neutral-500">
+              {entry.kind}
+            </span>
+          ) : null}
+        </p>
+      ) : null}
+      {entry.note ? (
+        <p className="text-base leading-7 text-neutral-700 dark:text-neutral-300">{entry.note}</p>
+      ) : null}
+    </li>
+  );
+}
+
+function JournalList({ days }: { days: ActivityDay[] }) {
+  if (days.length === 0) {
     return (
       <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-400">
         No entries yet — add one in the{" "}
@@ -33,23 +74,31 @@ function JournalList({ entries }: { entries: ActivityEntry[] }) {
 
   return (
     <div className="divide-y divide-neutral-200 dark:divide-neutral-800">
-      {entries.map((entry) => (
-        <article key={entry.date} className="space-y-2 py-6 first:pt-0 last:pb-0">
+      {days.map((day) => (
+        <article key={day.date} className="space-y-3 py-6 first:pt-0 last:pb-0">
           <time
-            dateTime={entry.date}
+            dateTime={day.date}
             className="block text-sm font-medium text-neutral-950 dark:text-neutral-100"
           >
-            {formatDate(entry.date)}
+            {formatDate(day.date)}
           </time>
-          <p className="text-base leading-7 text-neutral-700 dark:text-neutral-300">{entry.note}</p>
+          <ul className="space-y-3">
+            {day.entries.map((entry) => (
+              <Fragment key={entry.slug} entry={entry} />
+            ))}
+          </ul>
         </article>
       ))}
     </div>
   );
 }
 
-export default function ActivityPage() {
-  const entries = getAllActivity();
+export default async function ActivityPage() {
+  if (!SECTIONS_LIVE.activity) {
+    notFound();
+  }
+
+  const days = await getActivityByDay();
   const quoteText = quoteAsSingleParagraph(activityIntroQuote.text);
 
   return (
@@ -73,7 +122,7 @@ export default function ActivityPage() {
         </header>
 
         <section aria-label="Daily activity journal">
-          <JournalList entries={entries} />
+          <JournalList days={days} />
         </section>
       </main>
     </div>

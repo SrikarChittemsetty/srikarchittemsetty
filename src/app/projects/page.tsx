@@ -1,11 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import { useDeferredValue, useMemo, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { projects } from "@/data/projects";
 import { openSourceContributions } from "@/data/open-source";
 import { SubpageTitleRow, subpageHeaderTaglineClassName } from "@/components/subpage-title-row";
+import { SECTIONS_LIVE } from "@/lib/feature-flags";
 
 const contributionStatusClassName = {
   Merged:
@@ -15,6 +17,10 @@ const contributionStatusClassName = {
 };
 
 export default function ProjectsPage() {
+  if (!SECTIONS_LIVE.projects) {
+    notFound();
+  }
+
   const [query, setQuery] = useState("");
   const deferredQuery = useDeferredValue(query);
 

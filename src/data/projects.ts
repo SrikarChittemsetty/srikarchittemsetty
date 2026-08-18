@@ -13,6 +13,34 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    icon: "⚓",
+    name: "Hapax",
+    description:
+      "A crash-durable task store for AI agents that guarantees a side effect happens exactly once, even under kill -9 at any point. 500 randomized crashes produced 0 double charges; a naive implementation under the identical harness produced 121.",
+    why:
+      "Built because the MCP Tasks spec defines a store interface and ships only an in-memory implementation, leaving persistence to implementers — and an agent that charges a card twice is a real failure rather than a theoretical one. Peak 4,949 tasks/s, with the ceiling traced to Postgres's commit path by elimination and confirmed by a Go port that hit the same limit.",
+    href: "https://github.com/SrikarChittemsetty/hapax",
+    year: "2026",
+    status: "Built",
+    image: "/projects/hapax.svg",
+    tags: ["Python", "Go", "PostgreSQL", "Distributed Systems", "OpenTelemetry"],
+    featured: true,
+  },
+  {
+    icon: "⚖️",
+    name: "Aporia",
+    description:
+      "Semantic search over primary-source philosophy that classifies whether a passage argues for or against a claim, not merely whether it is about the topic. On a held-out set written after the fix, 20 of 21 queries surfaced the philosopher who actually holds the position.",
+    why:
+      "Built after finding that embedding search matches vocabulary and imagery rather than the conclusion an argument reaches — so a query about free will returns everyone who mentions it, on either side, undifferentiated. Fixed with HyDE query expansion over a from-scratch HNSW index, and validated on queries written afterwards so the result could not be tuned into existence.",
+    href: "https://github.com/SrikarChittemsetty/aporia",
+    year: "2026",
+    status: "Built",
+    image: "/projects/aporia.svg",
+    tags: ["Python", "FastAPI", "Next.js", "TypeScript", "Vector Search"],
+    featured: true,
+  },
+  {
     icon: "🌐",
     name: "Personal Ecosystem Portfolio",
     description:

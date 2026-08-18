@@ -4,16 +4,17 @@ import Link from "next/link";
 import { projects } from "@/data/projects";
 import { openSourceContributions } from "@/data/open-source";
 import ThemeToggle from "@/components/theme-toggle";
+import { SECTIONS_LIVE } from "@/lib/feature-flags";
 
 const featuredProjects = projects.filter((project) => project.featured);
 const latestOpenSourceContribution = openSourceContributions[0];
 
 const portalLinks = [
-  { label: "Projects", href: "/projects" },
-  { label: "Activity", href: "/activity" },
-  { label: "Shelf", href: "/shelf" },
-  { label: "Mind Map", href: "/house" },
-];
+  { label: "Projects", href: "/projects", live: SECTIONS_LIVE.projects },
+  { label: "Activity", href: "/activity", live: SECTIONS_LIVE.activity },
+  { label: "Shelf", href: "/shelf", live: true },
+  { label: "Mind Map", href: "/house", live: true },
+].filter((link) => link.live);
 
 function Header() {
   return (
@@ -69,12 +70,14 @@ function Intro() {
         systems, and ideas.
       </p>
       <div className="flex flex-wrap gap-3">
-        <a
-          href="#builds"
-          className="inline-flex rounded-md bg-neutral-900 px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:bg-neutral-700 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-300"
-        >
-          View Projects
-        </a>
+        {SECTIONS_LIVE.projects ? (
+          <a
+            href="#builds"
+            className="inline-flex rounded-md bg-neutral-900 px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:bg-neutral-700 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-300"
+          >
+            View Projects
+          </a>
+        ) : null}
         <Link
           href="/house"
           aria-label="Open Mind Map portfolio map"
@@ -88,6 +91,10 @@ function Intro() {
 }
 
 function ProjectList() {
+  if (!SECTIONS_LIVE.projects) {
+    return null;
+  }
+
   return (
     <section id="builds" className="space-y-3">
       <h2 className="text-xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">
@@ -180,12 +187,14 @@ function OpenSourcePreview() {
           </a>
         </div>
       </div>
-      <Link
-        href="/projects"
-        className="inline-flex text-sm text-neutral-600 transition-all duration-200 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
-      >
-        View all projects
-      </Link>
+      {SECTIONS_LIVE.projects ? (
+        <Link
+          href="/projects"
+          className="inline-flex text-sm text-neutral-600 transition-all duration-200 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+        >
+          View all projects
+        </Link>
+      ) : null}
     </section>
   );
 }

@@ -16,22 +16,46 @@ collections:
     label_singular: Activity Entry
     folder: content/activity
     create: true
-    slug: "{{fields.date}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{hour}}{{minute}}{{second}}"
     extension: json
     format: json
-    identifier_field: date
-    summary: "{{fields.date}}"
-    sortable_fields: [date]
+    identifier_field: title
+    summary: "{{commit_date}} — {{fields.title}}"
+    sortable_fields: [commit_date, date]
     fields:
-      - label: Date
+      - label: Link
+        name: link
+        widget: string
+        required: false
+        hint: URL of the essay, video, podcast, or paper. Leave blank for a bare thought.
+      - label: Title
+        name: title
+        widget: string
+        required: false
+        hint: What it's called. This is the text people click.
+      - label: Source
+        name: source
+        widget: string
+        required: false
+        hint: Channel, publication, or author.
+      - label: Kind
+        name: kind
+        widget: select
+        required: false
+        options: [essay, video, podcast, book, paper, note]
+      - label: Thought
+        name: note
+        widget: text
+        required: false
+        hint: Optional. Say something only if you actually have something to say.
+      - label: Date (only if logging an older day)
         name: date
         widget: datetime
         format: YYYY-MM-DD
         date_format: YYYY-MM-DD
         time_format: false
-        required: true
-      - label: Note
-        name: note
-        widget: text
-        required: true
-        hint: One short paragraph — what you worked on, read, learned, practiced, or finished.
+        required: false
+        default: ""
+        hint: >-
+          Leave empty. Set it only when writing up a day that already passed —
+          it overrides the automatic commit stamp.

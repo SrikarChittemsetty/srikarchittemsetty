@@ -1,0 +1,40 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#F7F7F4"/>
+  <rect x="110" y="90" width="980" height="620" rx="28" fill="#FFFFFF" stroke="#E3E1DC" stroke-width="3"/>
+
+  <rect x="150" y="136" width="260" height="110" rx="18" fill="#111111"/>
+  <rect x="450" y="136" width="260" height="110" rx="18" fill="#EDEBE6"/>
+  <rect x="750" y="136" width="260" height="110" rx="18" fill="#EDEBE6"/>
+  <text x="182" y="190" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Passages indexed</text>
+  <text x="182" y="224" fill="#D7D3CB" font-family="Inter, Arial, sans-serif" font-size="22">3,723</text>
+  <text x="482" y="190" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Held-out set</text>
+  <text x="482" y="224" fill="#68645D" font-family="Inter, Arial, sans-serif" font-size="22">20 / 21 correct</text>
+  <text x="782" y="190" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Index</text>
+  <text x="782" y="224" fill="#68645D" font-family="Inter, Arial, sans-serif" font-size="22">HNSW, from scratch</text>
+
+  <text x="150" y="320" fill="#68645D" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="600">&#8220;HUMANS HAVE FREE WILL&#8221;</text>
+
+  <!-- Two sides of one claim. The split is the product: retrieval that knows
+       which way a passage argues, not merely what it is about. -->
+  <rect x="150" y="344" width="435" height="180" rx="16" fill="#FAFAF8" stroke="#E3E1DC" stroke-width="2"/>
+  <rect x="150" y="344" width="6" height="180" rx="3" fill="#1E6F50"/>
+  <text x="184" y="380" fill="#1E6F50" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="700">FOR</text>
+  <rect x="184" y="398" width="360" height="12" rx="6" fill="#2A2927"/>
+  <rect x="184" y="422" width="320" height="12" rx="6" fill="#C4C0B7"/>
+  <rect x="184" y="446" width="345" height="12" rx="6" fill="#C4C0B7"/>
+  <text x="184" y="500" fill="#68645D" font-family="Inter, Arial, sans-serif" font-size="18">Kant &#183; Critique of Practical Reason</text>
+
+  <rect x="615" y="344" width="435" height="180" rx="16" fill="#FAFAF8" stroke="#E3E1DC" stroke-width="2"/>
+  <rect x="615" y="344" width="6" height="180" rx="3" fill="#9C3524"/>
+  <text x="649" y="380" fill="#9C3524" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="700">AGAINST</text>
+  <rect x="649" y="398" width="345" height="12" rx="6" fill="#2A2927"/>
+  <rect x="649" y="422" width="300" height="12" rx="6" fill="#C4C0B7"/>
+  <rect x="649" y="446" width="330" height="12" rx="6" fill="#C4C0B7"/>
+  <text x="649" y="500" fill="#68645D" font-family="Inter, Arial, sans-serif" font-size="18">Spinoza &#183; Ethics</text>
+
+  <rect x="150" y="540" width="900" height="56" rx="16" fill="#FFFFFF" stroke="#E3E1DC" stroke-width="2"/>
+  <text x="182" y="575" fill="#68645D" font-family="Inter, Arial, sans-serif" font-size="19">HNSW overtakes brute force at scale &#183; 1M vectors benchmarked &#183; 48 tests</text>
+
+  <text x="150" y="645" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="800">Aporia</text>
+  <text x="150" y="681" fill="#68645D" font-family="Inter, Arial, sans-serif" font-size="24">Search philosophy by argument, not keyword</text>
+</svg>
