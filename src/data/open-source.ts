@@ -10,6 +10,39 @@ export type OpenSourceContribution = {
 
 export const openSourceContributions: OpenSourceContribution[] = [
   {
+    title: "Bound decompressed size of gzip request bodies",
+    repository: "open-telemetry/opentelemetry-collector-contrib",
+    status: "Merged",
+    prUrl: "https://github.com/open-telemetry/opentelemetry-collector-contrib/pull/49948",
+    summary:
+      "Fixed a decompression-bomb vector in the Cloudflare receiver: the compressed request body was bounded, but the gzip stream was decompressed with no limit of its own, so a small request could expand without bound in memory.",
+    impact:
+      "Hardens a production telemetry receiver against memory exhaustion; over-limit requests are now rejected with a 422, matching the existing uncompressed path.",
+    tech: ["Go", "Security", "OpenTelemetry Collector"],
+  },
+  {
+    title: "Map the Rate metric intake type in the Datadog exporter",
+    repository: "open-telemetry/opentelemetry-collector-contrib",
+    status: "Merged",
+    prUrl: "https://github.com/open-telemetry/opentelemetry-collector-contrib/pull/50134",
+    summary:
+      "Rate metrics reached Datadog's intake as UNSPECIFIED because the type mapping only handled Count and Gauge; added the missing Rate case with table-driven tests covering all three.",
+    impact:
+      "Rate metrics exported through the Collector now carry the correct Datadog intake type instead of an unspecified one.",
+    tech: ["Go", "Datadog", "Metrics"],
+  },
+  {
+    title: "Clarify processor ordering relative to batching",
+    repository: "open-telemetry/opentelemetry-collector",
+    status: "Merged",
+    prUrl: "https://github.com/open-telemetry/opentelemetry-collector/pull/15394",
+    summary:
+      "Updated the core Collector's processor documentation to recommend placing filtering, transformation, and enrichment processors before batching, with the rationale spelled out.",
+    impact:
+      "Keeps pipelines from batching telemetry that is later discarded and ensures data reaches its final form before export.",
+    tech: ["Documentation", "OpenTelemetry Collector", "Pipelines"],
+  },
+  {
     title: "Microsoft Agent Governance Toolkit",
     repository: "microsoft/agent-governance-toolkit",
     status: "Merged",
@@ -19,27 +52,5 @@ export const openSourceContributions: OpenSourceContribution[] = [
     impact:
       "Improves onboarding for developers trying the TypeScript SDK with a concise runnable example.",
     tech: ["TypeScript", "SDK Examples", "GitHub Actions"],
-  },
-  {
-    title: "Continue CLI model capability warning",
-    repository: "continuedev/continue",
-    status: "Open",
-    prUrl: "https://github.com/continuedev/continue/pull/12275",
-    summary:
-      "Proposed a small CLI UX fix to make model capability warnings less noisy for developers using Continue.",
-    impact:
-      "Shows active contribution to developer tooling and willingness to improve rough edges in real OSS workflows.",
-    tech: ["TypeScript", "CLI", "Developer Tools"],
-  },
-  {
-    title: "Repository language surfacing",
-    repository: "DeepSourceCorp/good-first-issue",
-    status: "Open",
-    prUrl: "https://github.com/DeepSourceCorp/good-first-issue/pull/2699",
-    summary:
-      "Proposed showing the top repository languages so first-time contributors can choose projects more quickly.",
-    impact:
-      "Improves discovery quality for new contributors evaluating unfamiliar repositories.",
-    tech: ["Python", "Open Source", "Contributor UX"],
   },
 ];
