@@ -7,7 +7,7 @@ import ThemeToggle from "@/components/theme-toggle";
 import { SECTIONS_LIVE } from "@/lib/feature-flags";
 
 const featuredProjects = projects.filter((project) => project.featured);
-const latestOpenSourceContribution = openSourceContributions[0];
+const mergedOpenSourceContributions = openSourceContributions.filter((c) => c.status === "Merged");
 
 const portalLinks = [
   { label: "Projects", href: "/projects", live: SECTIONS_LIVE.projects },
@@ -65,9 +65,9 @@ function Intro() {
   return (
     <section className="space-y-5">
       <p className="max-w-3xl text-base leading-7 text-neutral-700 dark:text-neutral-300 sm:text-lg sm:leading-8">
-        Welcome! I&apos;m Srikar — I study computational &amp; applied math and philosophy at the
-        University of Chicago, and I&apos;m currently a software engineering intern on the
-        infrastructure &amp; platform team at ForkLaunch in San Francisco. I build systems that
+        Welcome! I&apos;m Srikar. I study computational &amp; applied math and philosophy at the
+        University of Chicago, and I&apos;m a software engineer on the
+        infrastructure &amp; platform team at ForkLaunch. I build systems that
         stay correct when things fail: exactly-once execution, retrieval that can be measured,
         ingest that survives overload. This site is the working record.
       </p>
@@ -157,7 +157,7 @@ function ExploreLinks() {
 }
 
 function OpenSourcePreview() {
-  if (!latestOpenSourceContribution) {
+  if (mergedOpenSourceContributions.length === 0) {
     return null;
   }
 
@@ -170,33 +170,30 @@ function OpenSourcePreview() {
         Merged public contributions to external developer tools and SDKs.
       </p>
       <div className="divide-y divide-neutral-200 border-y border-neutral-200 dark:divide-neutral-800 dark:border-neutral-800">
-        <div className="flex flex-col gap-2 px-2 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-          <div className="min-w-0 space-y-1">
-            <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
-              {latestOpenSourceContribution.title}
-            </p>
-            <p className="text-xs text-neutral-600 dark:text-neutral-400">
-              {latestOpenSourceContribution.repository}
-            </p>
-          </div>
-          <a
-            href={latestOpenSourceContribution.prUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-neutral-700 transition-all duration-200 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100"
+        {mergedOpenSourceContributions.map((contribution) => (
+          <div
+            key={contribution.prUrl}
+            className="flex flex-col gap-2 px-2 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
           >
-            View PR
-          </a>
-        </div>
+            <div className="min-w-0 space-y-1">
+              <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
+                {contribution.title}
+              </p>
+              <p className="text-xs text-neutral-600 dark:text-neutral-400">
+                {contribution.repository}
+              </p>
+            </div>
+            <a
+              href={contribution.prUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-neutral-700 transition-all duration-200 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100"
+            >
+              View PR
+            </a>
+          </div>
+        ))}
       </div>
-      {SECTIONS_LIVE.projects ? (
-        <Link
-          href="/projects"
-          className="inline-flex text-sm text-neutral-600 transition-all duration-200 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
-        >
-          View all projects
-        </Link>
-      ) : null}
     </section>
   );
 }

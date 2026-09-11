@@ -10,6 +10,17 @@ export type OpenSourceContribution = {
 
 export const openSourceContributions: OpenSourceContribution[] = [
   {
+    title: "Render negative Pod priorities as valid label values",
+    repository: "kubernetes-sigs/jobset",
+    status: "Merged",
+    prUrl: "https://github.com/kubernetes-sigs/jobset/pull/1291",
+    summary:
+      "The Pod webhook copied pod.Spec.Priority into a label verbatim, so a negative PriorityClass produced a label value the API server rejects; every child Pod failed admission and the JobSet sat at zero Pods. Negative values are now encoded with an n prefix while non-negative values keep their form, so exclusive-placement affinity keeps matching across the upgrade.",
+    impact:
+      "JobSets using a negative PriorityClass, including the cluster-autoscaler overprovisioning pattern, schedule again instead of retrying forever.",
+    tech: ["Go", "Kubernetes", "Admission Webhooks"],
+  },
+  {
     title: "Bound decompressed size of gzip request bodies",
     repository: "open-telemetry/opentelemetry-collector-contrib",
     status: "Merged",
