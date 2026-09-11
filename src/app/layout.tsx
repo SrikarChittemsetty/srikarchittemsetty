@@ -16,18 +16,18 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Srikar Chittemsetty",
   description:
-    "Personal Ecosystem Portfolio by Srikar Chittemsetty, featuring software projects, a daily activity journal, Shelf curation, and a Mind Map.",
+    "Software engineer at ForkLaunch and computational & applied math + philosophy student at the University of Chicago. Projects, merged open-source contributions, and a shelf of favorites.",
   openGraph: {
     title: "Srikar Chittemsetty",
     description:
-      "Personal Ecosystem Portfolio by Srikar Chittemsetty, featuring software projects, a daily activity journal, Shelf curation, and a Mind Map.",
+      "Software engineer at ForkLaunch and computational & applied math + philosophy student at the University of Chicago. Projects, merged open-source contributions, and a shelf of favorites.",
     type: "website",
   },
   twitter: {
     card: "summary",
     title: "Srikar Chittemsetty",
     description:
-      "Personal Ecosystem Portfolio featuring projects, writing, and experiments by Srikar Chittemsetty.",
+      "Software engineer at ForkLaunch and computational & applied math + philosophy student at the University of Chicago. Projects, merged open-source contributions, and a shelf of favorites.",
   },
 };
 

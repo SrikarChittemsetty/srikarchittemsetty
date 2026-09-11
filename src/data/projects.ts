@@ -58,7 +58,7 @@ export const projects: Project[] = [
     icon: "🌐",
     name: "Personal Ecosystem Portfolio",
     description:
-      "A Next.js portfolio platform that unifies project case studies, in-repo writing, a curated Shelf, and an optional Mind Map in one personal system.",
+      "This site: a Next.js portfolio with project case studies, an open-source contribution record, a Git-backed activity journal, and a curated Shelf.",
     why:
       "Built to turn a personal site into a living ecosystem for projects, writing, experiments, and tools instead of a static resume page.",
     href: "https://github.com/SrikarChittemsetty/srikarchittemsetty",

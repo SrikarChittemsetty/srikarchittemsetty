@@ -54,7 +54,7 @@ export const openSourceContributions: OpenSourceContribution[] = [
     tech: ["Documentation", "OpenTelemetry Collector", "Pipelines"],
   },
   {
-    title: "Microsoft Agent Governance Toolkit",
+    title: "Add TypeScript SDK quickstart example",
     repository: "microsoft/agent-governance-toolkit",
     status: "Merged",
     prUrl: "https://github.com/microsoft/agent-governance-toolkit/pull/1654",

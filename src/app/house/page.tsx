@@ -1,9 +1,15 @@
 "use client";
 
+import { notFound } from "next/navigation";
 import HouseScene from "@/components/house-scene";
 import { SubpageTitleRow, subpageHeaderTaglineClassName } from "@/components/subpage-title-row";
+import { SECTIONS_LIVE } from "@/lib/feature-flags";
 
 export default function HousePage() {
+  if (!SECTIONS_LIVE.house) {
+    notFound();
+  }
+
   return (
     <div className="min-h-screen bg-[#fafafa] text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <main className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-12 sm:py-16">

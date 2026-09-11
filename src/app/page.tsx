@@ -1,5 +1,5 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { Mail, ScanEye } from "lucide-react";
+import { Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/data/projects";
@@ -11,12 +11,32 @@ import { SECTIONS_LIVE } from "@/lib/feature-flags";
 const featuredProjects = projects.filter((project) => project.featured);
 const mergedOpenSourceContributions = openSourceContributions.filter((c) => c.status === "Merged");
 
-const portalLinks = [
+const navLinks = [
   { label: "Projects", href: "/projects", live: SECTIONS_LIVE.projects },
   { label: "Activity", href: "/activity", live: SECTIONS_LIVE.activity },
   { label: "Shelf", href: "/shelf", live: true },
-  { label: "Mind Map", href: "/house", live: true },
+  { label: "Mind Map", href: "/house", live: SECTIONS_LIVE.house },
 ].filter((link) => link.live);
+
+const socialLinks = [
+  { label: "GitHub", href: "https://github.com/SrikarChittemsetty", Icon: FaGithub },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/srikar-c", Icon: FaLinkedin },
+  { label: "Email", href: "mailto:chittemsettys@uchicago.edu", Icon: Mail },
+];
+
+const iconLinkClassName =
+  "rounded-md p-1 transition-all duration-200 hover:bg-black/5 hover:text-black/70 dark:hover:bg-white/10 dark:hover:text-neutral-300";
+
+const textLinkClassName =
+  "text-sm text-neutral-600 transition-all duration-200 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-100";
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="text-xs font-medium uppercase tracking-[0.14em] text-neutral-500 dark:text-neutral-500">
+      {children}
+    </h2>
+  );
+}
 
 function Header() {
   return (
@@ -24,40 +44,31 @@ function Header() {
       <h1 className="text-3xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100 sm:text-[32px]">
         Srikar Chittemsetty
       </h1>
-      <nav className="flex items-center gap-3 text-neutral-900 dark:text-neutral-100">
-        <a
-          href="https://github.com/SrikarChittemsetty"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub"
-          className="rounded-md p-1 transition-all duration-200 hover:bg-black/5 hover:text-black/70 dark:hover:bg-white/10 dark:hover:text-neutral-300"
-        >
-          <FaGithub size={16} />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/srikar-c"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn"
-          className="rounded-md p-1 transition-all duration-200 hover:bg-black/5 hover:text-black/70 dark:hover:bg-white/10 dark:hover:text-neutral-300"
-        >
-          <FaLinkedin size={16} />
-        </a>
-        <a
-          href="mailto:chittemsettys@uchicago.edu"
-          aria-label="Email"
-          className="rounded-md p-1 transition-all duration-200 hover:bg-black/5 hover:text-black/70 dark:hover:bg-white/10 dark:hover:text-neutral-300"
-        >
-          <Mail size={16} />
-        </a>
-        <Link
-          href="/house"
-          aria-label="Open Mind Map portfolio map"
-          className="rounded-md p-1 transition-all duration-200 hover:bg-black/5 hover:text-black/70 dark:hover:bg-white/10 dark:hover:text-neutral-300"
-        >
-          <ScanEye size={16} />
-        </Link>
-        <ThemeToggle />
+      <nav aria-label="Primary" className="flex items-center gap-4">
+        <ul className="hidden items-center gap-4 sm:flex">
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <Link href={link.href} className={textLinkClassName}>
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div className="flex items-center gap-3 text-neutral-900 dark:text-neutral-100">
+          {socialLinks.map(({ label, href, Icon }) => (
+            <a
+              key={label}
+              href={href}
+              target={href.startsWith("http") ? "_blank" : undefined}
+              rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+              aria-label={label}
+              className={iconLinkClassName}
+            >
+              <Icon size={16} />
+            </a>
+          ))}
+          <ThemeToggle />
+        </div>
       </nav>
     </header>
   );
@@ -65,31 +76,21 @@ function Header() {
 
 function Intro() {
   return (
-    <section className="space-y-5">
+    <section>
       <p className="max-w-3xl text-base leading-7 text-neutral-700 dark:text-neutral-300 sm:text-lg sm:leading-8">
-        Welcome! I&apos;m Srikar. I study computational &amp; applied math and philosophy at the
-        University of Chicago, and I&apos;m a software engineer on the
-        infrastructure &amp; platform team at ForkLaunch. I build systems that
-        stay correct when things fail: exactly-once execution, retrieval that can be measured,
-        ingest that survives overload. This site is the working record.
-      </p>
-      <div className="flex flex-wrap gap-3">
-        {SECTIONS_LIVE.projects ? (
-          <a
-            href="#builds"
-            className="inline-flex rounded-md bg-neutral-900 px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:bg-neutral-700 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-300"
-          >
-            View Projects
-          </a>
-        ) : null}
-        <Link
-          href="/house"
-          aria-label="Open Mind Map portfolio map"
-          className="inline-flex rounded-md border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-900 transition-all duration-200 hover:border-neutral-400 hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-100 dark:hover:border-neutral-600 dark:hover:bg-neutral-900"
+        I study computational &amp; applied math and philosophy at the University of Chicago,
+        and I&apos;m a software engineer on the infrastructure &amp; platform team at{" "}
+        <a
+          href="https://forklaunch.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-neutral-900 underline decoration-neutral-300 underline-offset-4 transition-all duration-200 hover:decoration-neutral-900 dark:text-neutral-100 dark:decoration-neutral-700 dark:hover:decoration-neutral-100"
         >
-          Mind Map
-        </Link>
-      </div>
+          ForkLaunch
+        </a>
+        . I build systems that stay correct when things fail: exactly-once execution, retrieval
+        that can be measured, ingest that survives overload.
+      </p>
     </section>
   );
 }
@@ -100,10 +101,8 @@ function ExperienceSection() {
   }
 
   return (
-    <section id="experience" className="space-y-3">
-      <h2 className="text-xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">
-        Experience
-      </h2>
+    <section id="experience" className="space-y-4">
+      <SectionLabel>Experience</SectionLabel>
       <div className="space-y-4">
         {experience.map((job) => (
           <article
@@ -184,10 +183,13 @@ function ProjectList() {
   }
 
   return (
-    <section id="builds" className="space-y-3">
-      <h2 className="text-xl font-semibold tracking-tight text-neutral-950 dark:text-neutral-100">
-        Featured Projects
-      </h2>
+    <section id="projects" className="space-y-4">
+      <div className="flex items-baseline justify-between gap-4">
+        <SectionLabel>Projects</SectionLabel>
+        <Link href="/projects" className={textLinkClassName}>
+          All projects →
+        </Link>
+      </div>
       <div className="divide-y divide-neutral-200 border-y border-neutral-200 dark:divide-neutral-800 dark:border-neutral-800">
         {featuredProjects.map((project) => (
           <a
@@ -195,46 +197,24 @@ function ProjectList() {
             href={project.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="grid grid-cols-[auto_1fr] gap-4 px-2 py-4 transition-all duration-200 hover:bg-black/[0.02] dark:hover:bg-white/[0.03] sm:grid-cols-[auto_1fr_auto] sm:items-center"
+            className="group block px-2 py-4 transition-all duration-200 hover:bg-black/[0.02] dark:hover:bg-white/[0.03]"
           >
-            <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-neutral-100 text-sm dark:bg-neutral-800">
-              {project.icon}
+            <div className="flex items-baseline justify-between gap-4">
+              <h3 className="font-medium text-neutral-900 dark:text-neutral-100">
+                {project.name}
+                <span
+                  aria-hidden="true"
+                  className="ml-1.5 inline-block text-neutral-400 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-neutral-900 dark:text-neutral-600 dark:group-hover:text-neutral-100"
+                >
+                  ↗
+                </span>
+              </h3>
+              <p className="shrink-0 text-sm text-neutral-500 dark:text-neutral-500">{project.year}</p>
             </div>
-            <div className="min-w-0">
-              <h3 className="font-medium text-neutral-900 dark:text-neutral-100">{project.name}</h3>
-              <p className="mt-1 text-sm leading-6 text-neutral-600 dark:text-neutral-400">{project.description}</p>
-              <p className="mt-2 text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-500">
-                {project.tags.slice(0, 4).join(" / ")}
-              </p>
-            </div>
-            <p className="text-sm text-neutral-500 dark:text-neutral-500 sm:ml-6">{project.year}</p>
-          </a>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function ExploreLinks() {
-  return (
-    <section className="space-y-3">
-      <h2 className="text-sm font-medium uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
-        Explore
-      </h2>
-      <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
-        {portalLinks.map((link) => (
-          <a
-            key={link.label}
-            href={link.href}
-            className="group flex items-center justify-between rounded-lg bg-neutral-100 px-3.5 py-3.5 text-neutral-900 transition-all duration-200 hover:bg-neutral-200/80 sm:px-4 sm:py-4 dark:bg-neutral-900 dark:text-neutral-100 dark:hover:bg-neutral-800"
-          >
-            <span className="text-sm font-semibold tracking-tight sm:text-base">{link.label}</span>
-            <span
-              aria-hidden="true"
-              className="text-sm text-neutral-500 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-neutral-900 dark:text-neutral-400 dark:group-hover:text-neutral-100"
-            >
-              →
-            </span>
+            <p className="mt-1 text-sm leading-6 text-neutral-600 dark:text-neutral-400">{project.description}</p>
+            <p className="mt-2 text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-500">
+              {project.tags.slice(0, 4).join(" / ")}
+            </p>
           </a>
         ))}
       </div>
@@ -248,52 +228,74 @@ function OpenSourcePreview() {
   }
 
   return (
-    <section className="space-y-2">
-      <h2 className="text-sm font-medium uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
-        Open Source
-      </h2>
-      <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-400">
-        Merged public contributions to external developer tools and SDKs.
-      </p>
+    <section className="space-y-4">
+      <div className="space-y-1">
+        <SectionLabel>Open Source</SectionLabel>
+        <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-400">
+          Merged pull requests to Kubernetes, OpenTelemetry, and Microsoft projects.
+        </p>
+      </div>
       <div className="divide-y divide-neutral-200 border-y border-neutral-200 dark:divide-neutral-800 dark:border-neutral-800">
         {mergedOpenSourceContributions.map((contribution) => (
-          <div
+          <a
             key={contribution.prUrl}
-            className="flex flex-col gap-2 px-2 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+            href={contribution.prUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex flex-col gap-1 px-2 py-3 transition-all duration-200 hover:bg-black/[0.02] dark:hover:bg-white/[0.03] sm:flex-row sm:items-baseline sm:justify-between sm:gap-4"
           >
-            <div className="min-w-0 space-y-1">
-              <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
-                {contribution.title}
-              </p>
-              <p className="text-xs text-neutral-600 dark:text-neutral-400">
-                {contribution.repository}
-              </p>
-            </div>
-            <a
-              href={contribution.prUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-neutral-700 transition-all duration-200 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100"
-            >
-              View PR
-            </a>
-          </div>
+            <p className="min-w-0 text-sm font-medium text-neutral-900 dark:text-neutral-100">
+              {contribution.title}
+            </p>
+            <p className="shrink-0 font-mono text-xs text-neutral-500 transition-all duration-200 group-hover:text-neutral-900 dark:text-neutral-500 dark:group-hover:text-neutral-100">
+              {contribution.repository}
+            </p>
+          </a>
         ))}
       </div>
     </section>
   );
 }
 
+function Footer() {
+  return (
+    <footer className="flex flex-col gap-3 border-t border-neutral-200 pt-6 text-sm text-neutral-500 dark:border-neutral-800 dark:text-neutral-500 sm:flex-row sm:items-center sm:justify-between">
+      <p>© {new Date().getFullYear()} Srikar Chittemsetty</p>
+      <ul className="flex items-center gap-4">
+        {navLinks.map((link) => (
+          <li key={link.href}>
+            <Link href={link.href} className={textLinkClassName}>
+              {link.label}
+            </Link>
+          </li>
+        ))}
+        {socialLinks.map((link) => (
+          <li key={link.label}>
+            <a
+              href={link.href}
+              target={link.href.startsWith("http") ? "_blank" : undefined}
+              rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              className={textLinkClassName}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </footer>
+  );
+}
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#fafafa] font-sans text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
-      <main className="mx-auto flex w-full max-w-[800px] flex-col gap-10 px-6 py-12 sm:py-16">
+      <main className="mx-auto flex w-full max-w-[800px] flex-col gap-12 px-6 py-12 sm:py-16">
         <Header />
         <Intro />
         <ExperienceSection />
         <ProjectList />
         <OpenSourcePreview />
-        <ExploreLinks />
+        <Footer />
       </main>
     </div>
   );

@@ -41,11 +41,10 @@ export default function ProjectsPage() {
     <div className="min-h-screen bg-[#fafafa] font-sans text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <main className="mx-auto flex w-full max-w-[800px] flex-col gap-10 px-6 py-12 sm:py-16">
         <header className="space-y-4 border-b border-neutral-200 pb-8 dark:border-neutral-800">
-          <SubpageTitleRow>Garage</SubpageTitleRow>
+          <SubpageTitleRow>Projects</SubpageTitleRow>
           <p className={subpageHeaderTaglineClassName}>
-            Tools, systems, and finished builds I&apos;m turning into reusable parts of my workflow.
-            For now, this is also the deeper project gallery and public contribution record behind the
-            homepage showcase.
+            Everything I&apos;ve built, with the reason each one exists. Merged open-source work is
+            further down.
           </p>
         </header>
 
@@ -54,7 +53,7 @@ export default function ProjectsPage() {
             type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search by build, tool, technology, status, or tags..."
+            placeholder="Search by name, technology, status, or tag..."
             className="w-full rounded-lg border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 outline-none transition-all duration-200 placeholder:text-neutral-400 focus:border-neutral-400 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder:text-neutral-500 dark:focus:border-neutral-600"
           />
         </section>
@@ -125,8 +124,7 @@ export default function ProjectsPage() {
               Open Source
             </h2>
             <p className="max-w-2xl text-sm leading-6 text-neutral-600 dark:text-neutral-400">
-              A growing record of merged contributions to external tools, SDKs, and developer-facing
-              projects.
+              Contributions to external projects, with what each one fixed and why it mattered.
             </p>
           </div>
 
