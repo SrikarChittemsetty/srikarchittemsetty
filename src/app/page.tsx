@@ -169,8 +169,8 @@ function ExperienceSection() {
             rel="noopener noreferrer"
             className="flex items-center gap-4 px-2 py-4 transition-all duration-200 hover:bg-black/[0.02] dark:hover:bg-white/[0.03]"
           >
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-neutral-200 bg-white p-2 dark:border-neutral-800">
-              <Image src={job.logo} alt={`${job.company} logo`} width={32} height={20} className="h-auto w-8" />
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-black p-1.5">
+              <Image src={job.logo} alt={`${job.company} logo`} width={36} height={22} className="h-auto w-9" />
             </span>
             <span className="min-w-0 flex-1">
               <span className="block font-medium text-neutral-900 dark:text-neutral-100">{job.company}</span>
