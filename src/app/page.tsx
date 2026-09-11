@@ -117,7 +117,13 @@ function ExperienceSection() {
                 aria-label={`${job.company} website`}
                 className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-neutral-200 bg-white p-2.5 transition-all duration-200 hover:border-neutral-300 dark:border-neutral-800 dark:bg-neutral-950 dark:hover:border-neutral-700"
               >
-                <Image src={job.logo} alt={`${job.company} logo`} width={40} height={25} className="h-auto w-10" />
+                <Image
+                  src={job.logo}
+                  alt={`${job.company} logo`}
+                  width={40}
+                  height={25}
+                  className="h-auto w-10"
+                />
               </a>
               <div className="min-w-0 flex-1">
                 <div className="flex flex-col gap-1.5 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
