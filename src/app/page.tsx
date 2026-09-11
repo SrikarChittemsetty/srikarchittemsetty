@@ -160,80 +160,29 @@ function ExperienceSection() {
   return (
     <section id="experience" className="space-y-4">
       <SectionLabel>Experience</SectionLabel>
-      <div className="space-y-4">
+      <div className="divide-y divide-neutral-200 border-y border-neutral-200 dark:divide-neutral-800 dark:border-neutral-800">
         {experience.map((job) => (
-          <article
+          <a
             key={`${job.company}-${job.start}`}
-            className="rounded-xl border border-neutral-200 bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-200 hover:border-neutral-300 dark:border-neutral-800 dark:bg-neutral-900/60 dark:hover:border-neutral-700 sm:p-6"
+            href={job.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 px-2 py-4 transition-all duration-200 hover:bg-black/[0.02] dark:hover:bg-white/[0.03]"
           >
-            <div className="flex items-center gap-4">
-              <a
-                href={job.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${job.company} website`}
-                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-neutral-200 bg-white p-2.5 transition-all duration-200 hover:border-neutral-300 dark:border-neutral-800 dark:bg-neutral-950 dark:hover:border-neutral-700"
-              >
-                <Image
-                  src={job.logo}
-                  alt={`${job.company} logo`}
-                  width={40}
-                  height={25}
-                  className="h-auto w-10"
-                />
-              </a>
-              <div className="min-w-0 flex-1">
-                <div className="flex flex-col gap-1.5 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
-                  <div className="min-w-0">
-                    <h3 className="text-lg font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
-                      <a
-                        href={job.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="transition-all duration-200 hover:text-neutral-600 dark:hover:text-neutral-300"
-                      >
-                        {job.company}
-                      </a>
-                    </h3>
-                    <p className="mt-0.5 text-sm text-neutral-700 dark:text-neutral-300">
-                      {job.role}
-                      {job.team ? <span className="text-neutral-500 dark:text-neutral-500">, {job.team}</span> : null}
-                    </p>
-                    <p className="mt-0.5 text-xs text-neutral-500 dark:text-neutral-500">{job.tagline}</p>
-                  </div>
-                  <p className="shrink-0 text-sm text-neutral-500 dark:text-neutral-500 sm:pt-1">
-                    {job.start} – {job.end}
-                    <span className="hidden sm:inline"> · {job.location}</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <p className="mt-4 text-sm leading-6 text-neutral-600 dark:text-neutral-400">{job.summary}</p>
-
-            <ul className="mt-3 space-y-2">
-              {job.highlights.map((highlight) => (
-                <li
-                  key={highlight}
-                  className="flex gap-3 text-sm leading-6 text-neutral-700 dark:text-neutral-300"
-                >
-                  <span aria-hidden="true" className="mt-[11px] h-1 w-1 shrink-0 rounded-full bg-neutral-400 dark:bg-neutral-600" />
-                  <span>{highlight}</span>
-                </li>
-              ))}
-            </ul>
-
-            <ul className="mt-4 flex flex-wrap gap-1.5">
-              {job.tech.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-md bg-neutral-100 px-2 py-0.5 text-xs text-neutral-600 dark:bg-neutral-800 dark:text-neutral-400"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </article>
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-neutral-200 bg-white p-2 dark:border-neutral-800">
+              <Image src={job.logo} alt={`${job.company} logo`} width={32} height={20} className="h-auto w-8" />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block font-medium text-neutral-900 dark:text-neutral-100">{job.company}</span>
+              <span className="block text-sm text-neutral-600 dark:text-neutral-400">{job.role}</span>
+            </span>
+            <span className="shrink-0 text-right text-sm text-neutral-500 dark:text-neutral-500">
+              <span className="block">
+                {job.start} – {job.end}
+              </span>
+              <span className="block text-xs">{job.location}</span>
+            </span>
+          </a>
         ))}
       </div>
     </section>
