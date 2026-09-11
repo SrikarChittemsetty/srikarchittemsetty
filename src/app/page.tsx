@@ -7,14 +7,15 @@ import { experience } from "@/data/experience";
 import { openSourceContributions } from "@/data/open-source";
 import ThemeToggle from "@/components/theme-toggle";
 import { SECTIONS_LIVE } from "@/lib/feature-flags";
+import { getAllActivity, type ActivityEntry } from "@/lib/activity-content";
 
 const featuredProjects = projects.filter((project) => project.featured);
 const mergedOpenSourceContributions = openSourceContributions.filter((c) => c.status === "Merged");
 
 const navLinks = [
-  { label: "Projects", href: "/projects", live: SECTIONS_LIVE.projects },
   { label: "Activity", href: "/activity", live: SECTIONS_LIVE.activity },
-  { label: "Shelf", href: "/shelf", live: true },
+  { label: "Projects", href: "/projects", live: SECTIONS_LIVE.projects },
+  { label: "Shelf", href: "/shelf", live: SECTIONS_LIVE.shelf },
   { label: "Mind Map", href: "/house", live: SECTIONS_LIVE.house },
 ].filter((link) => link.live);
 
@@ -91,6 +92,59 @@ function Intro() {
         . I build systems that stay correct when things fail: exactly-once execution, retrieval
         that can be measured, ingest that survives overload.
       </p>
+    </section>
+  );
+}
+
+function formatShortDate(value: string) {
+  const date = new Date(value + "T12:00:00");
+  if (Number.isNaN(date.getTime())) return value;
+  return new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" }).format(date);
+}
+
+function NowSection({ entries }: { entries: ActivityEntry[] }) {
+  if (!SECTIONS_LIVE.activity || entries.length === 0) {
+    return null;
+  }
+
+  return (
+    <section id="now" className="space-y-4">
+      <div className="flex items-baseline justify-between gap-4">
+        <SectionLabel>Now</SectionLabel>
+        <Link href="/activity" className={textLinkClassName}>
+          All updates →
+        </Link>
+      </div>
+      <ul className="space-y-3">
+        {entries.map((entry) => {
+          const heading = entry.title ?? entry.link;
+          return (
+            <li key={entry.slug} className="flex gap-4 text-sm leading-6">
+              <time dateTime={entry.date} className="w-14 shrink-0 text-neutral-500 dark:text-neutral-500">
+                {formatShortDate(entry.date)}
+              </time>
+              <p className="min-w-0 text-neutral-700 dark:text-neutral-300">
+                {heading ? (
+                  entry.link ? (
+                    <a
+                      href={entry.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-neutral-900 underline decoration-neutral-300 underline-offset-4 transition-all duration-200 hover:decoration-neutral-900 dark:text-neutral-100 dark:decoration-neutral-700 dark:hover:decoration-neutral-100"
+                    >
+                      {heading}
+                    </a>
+                  ) : (
+                    heading
+                  )
+                ) : null}
+                {heading && entry.note ? " — " : null}
+                {entry.note}
+              </p>
+            </li>
+          );
+        })}
+      </ul>
     </section>
   );
 }
@@ -292,12 +346,15 @@ function Footer() {
   );
 }
 
-export default function Home() {
+export default async function Home() {
+  const latestActivity = SECTIONS_LIVE.activity ? (await getAllActivity()).slice(0, 3) : [];
+
   return (
     <div className="min-h-screen bg-[#fafafa] font-sans text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <main className="mx-auto flex w-full max-w-[800px] flex-col gap-12 px-6 py-12 sm:py-16">
         <Header />
         <Intro />
+        <NowSection entries={latestActivity} />
         <ExperienceSection />
         <ProjectList />
         <OpenSourcePreview />

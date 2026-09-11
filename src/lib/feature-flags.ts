@@ -7,8 +7,10 @@
  * by turning one off.
  */
 export const SECTIONS_LIVE = {
-  activity: false,
+  activity: true,
   projects: true,
+  /** Curated favorites at `/shelf`. Off to keep the site to work and updates. */
+  shelf: false,
   /** The interactive house map at `/house`. Off until its rooms have real content. */
   house: false,
 } as const;

@@ -1,9 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
 import { SubpageTitleRow, subpageHeaderTaglineClassName } from "@/components/subpage-title-row";
 import { shelfIntroQuote } from "@/data/shelf";
+import { SECTIONS_LIVE } from "@/lib/feature-flags";
 
 type ShelfEntry = {
   title: string;
@@ -152,6 +154,10 @@ function quoteAsSingleParagraph(text: string) {
 }
 
 export default function ShelfPage() {
+  if (!SECTIONS_LIVE.shelf) {
+    notFound();
+  }
+
   const quoteText = quoteAsSingleParagraph(shelfIntroQuote.text);
 
   return (

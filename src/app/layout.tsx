@@ -16,18 +16,18 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Srikar Chittemsetty",
   description:
-    "Software engineer at ForkLaunch and computational & applied math + philosophy student at the University of Chicago. Projects, merged open-source contributions, and a shelf of favorites.",
+    "Software engineer at ForkLaunch and computational & applied math + philosophy student at the University of Chicago. Work history, projects, merged open-source contributions, and short updates on what I'm doing now.",
   openGraph: {
     title: "Srikar Chittemsetty",
     description:
-      "Software engineer at ForkLaunch and computational & applied math + philosophy student at the University of Chicago. Projects, merged open-source contributions, and a shelf of favorites.",
+      "Software engineer at ForkLaunch and computational & applied math + philosophy student at the University of Chicago. Work history, projects, merged open-source contributions, and short updates on what I'm doing now.",
     type: "website",
   },
   twitter: {
     card: "summary",
     title: "Srikar Chittemsetty",
     description:
-      "Software engineer at ForkLaunch and computational & applied math + philosophy student at the University of Chicago. Projects, merged open-source contributions, and a shelf of favorites.",
+      "Software engineer at ForkLaunch and computational & applied math + philosophy student at the University of Chicago. Work history, projects, merged open-source contributions, and short updates on what I'm doing now.",
   },
 };
 
