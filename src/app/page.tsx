@@ -108,9 +108,9 @@ function NowSection({ entries }: { entries: ActivityEntry[] }) {
   }
 
   return (
-    <section id="now" className="space-y-4">
+    <section id="activity" className="space-y-4">
       <div className="flex items-baseline justify-between gap-4">
-        <SectionLabel>Now</SectionLabel>
+        <SectionLabel>Activity</SectionLabel>
         <Link href="/activity" className={textLinkClassName}>
           All updates →
         </Link>
@@ -138,7 +138,10 @@ function NowSection({ entries }: { entries: ActivityEntry[] }) {
                     heading
                   )
                 ) : null}
-                {heading && entry.note ? " — " : null}
+                {entry.source ? (
+                  <span className="text-neutral-500 dark:text-neutral-500"> — {entry.source}</span>
+                ) : null}
+                {heading && entry.note ? " · " : null}
                 {entry.note}
               </p>
             </li>
