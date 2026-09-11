@@ -180,7 +180,10 @@ function ExperienceSection() {
               <span className="block">
                 {job.start} – {job.end}
               </span>
-              <span className="block text-xs">{job.location}</span>
+              <span className="block text-xs">
+                {job.type ? `${job.type} · ` : null}
+                {job.location}
+              </span>
             </span>
           </a>
         ))}

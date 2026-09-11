@@ -1,6 +1,8 @@
 export type Experience = {
   company: string;
   role: string;
+  /** Employment type, shown next to the dates. Mirrors LinkedIn's separate field. */
+  type?: "Internship" | "Part-time" | "Full-time" | "Contract";
   location: string;
   start: string;
   end: string;
@@ -11,7 +13,8 @@ export type Experience = {
 export const experience: Experience[] = [
   {
     company: "ForkLaunch",
-    role: "Software Engineering Intern, Infrastructure & Platform",
+    role: "Software Engineer, Infrastructure & Platform",
+    type: "Internship",
     location: "San Francisco, CA",
     start: "Jun 2026",
     end: "Present",
