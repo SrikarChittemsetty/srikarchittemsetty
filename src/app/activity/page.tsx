@@ -101,7 +101,7 @@ export default async function ActivityPage() {
         <header className="space-y-4 border-b border-neutral-200 pb-8 dark:border-neutral-800">
           <SubpageTitleRow>Activity</SubpageTitleRow>
           <p className={subpageHeaderTaglineClassName}>
-            Things I&apos;ve read, watched, and listened to. Newest first.
+            Keeping track of the rabbit holes. Newest first.
           </p>
         </header>
 
