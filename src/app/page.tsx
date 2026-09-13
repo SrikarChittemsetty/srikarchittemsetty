@@ -79,7 +79,7 @@ function Intro() {
   return (
     <section>
       <p className="max-w-3xl text-base leading-7 text-neutral-700 dark:text-neutral-300 sm:text-lg sm:leading-8">
-        I study computational &amp; applied math and philosophy at the University of Chicago,
+        I study computer science and philosophy at the University of Chicago,
         and I&apos;m a software engineer on the infrastructure &amp; platform team at{" "}
         <a
           href="https://forklaunch.com"
