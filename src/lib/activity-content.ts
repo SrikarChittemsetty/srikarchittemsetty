@@ -136,6 +136,58 @@ async function resolveDate(file: string, raw: RawEntry) {
   return { date: toCalendarDay(mtime), stamped: true };
 }
 
+/**
+ * Title and source for an entry that was dropped in as a bare link.
+ *
+ * Reads og:title / <title> and og:site_name from HTML pages at build time.
+ * PDFs and anything that fails resolve to the hostname, so the link still
+ * reads as something rather than a raw URL. Explicit fields always win.
+ */
+async function resolveLinkMeta(link: string): Promise<{ title: string; source?: string }> {
+  const hostname = (() => {
+    try {
+      return new URL(link).hostname.replace(/^www\./, "");
+    } catch {
+      return link;
+    }
+  })();
+
+  try {
+    const response = await fetch(link, {
+      headers: { Accept: "text/html", "User-Agent": "Mozilla/5.0 (compatible; srikarchittemsetty.com)" },
+      signal: AbortSignal.timeout(5000),
+    });
+    if (!response.ok || !(response.headers.get("content-type") ?? "").includes("text/html")) {
+      return { title: hostname };
+    }
+
+    const html = (await response.text()).slice(0, 200_000);
+    const meta = (property: string) =>
+      html.match(new RegExp(`<meta[^>]+(?:property|name)=["']${property}["'][^>]+content=["']([^"']+)["']`, "i"))?.[1] ??
+      html.match(new RegExp(`<meta[^>]+content=["']([^"']+)["'][^>]+(?:property|name)=["']${property}["']`, "i"))?.[1];
+
+    const decode = (value: string) =>
+      value
+        .replace(/&amp;/g, "&")
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;|&apos;/g, "'")
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">")
+        .replace(/\s+/g, " ")
+        .trim();
+
+    const title = meta("og:title") ?? html.match(/<title[^>]*>([^<]+)<\/title>/i)?.[1];
+    const siteName = meta("og:site_name");
+
+    return {
+      title: title ? decode(title) : hostname,
+      source: siteName ? decode(siteName) : hostname,
+    };
+  } catch {
+    return { title: hostname };
+  }
+}
+
 export async function getAllActivity(): Promise<ActivityEntry[]> {
   if (!fs.existsSync(contentDir)) {
     return [];
@@ -147,14 +199,15 @@ export async function getAllActivity(): Promise<ActivityEntry[]> {
     files.map(async (file) => {
       const raw = JSON.parse(fs.readFileSync(path.join(contentDir, file), "utf-8")) as RawEntry;
       const { date, stamped } = await resolveDate(file, raw);
+      const fetched = raw.link && !raw.title ? await resolveLinkMeta(raw.link) : undefined;
 
       return {
         slug: file.replace(/\.json$/, ""),
         date,
         stamped,
         link: raw.link,
-        title: raw.title,
-        source: raw.source,
+        title: raw.title ?? fetched?.title,
+        source: raw.source ?? fetched?.source,
         kind: raw.kind,
         note: raw.note,
       };

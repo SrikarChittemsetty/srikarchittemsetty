@@ -32,7 +32,7 @@ collections:
         name: title
         widget: string
         required: false
-        hint: What it's called. This is the text people click.
+        hint: What it's called. Leave blank and it is pulled from the page at build time (PDFs need it filled in).
       - label: Source
         name: source
         widget: string
